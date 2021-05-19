@@ -1,0 +1,45 @@
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<header class="top_header block block_1" id="block_1">
+	<div class="dark_shell">
+		<div class="row">
+			<nav class="header_nav">
+				<ul>
+					<li class="header_menu_li"><a href="#block_2" class="header_link">About</a></li>
+					<li class="header_menu_li"><a href="#block_3" class="header_link">Our work</a></li>
+					<li class="header_menu_li"><a href="#block_4" class="header_link">Feedback</a></li>
+					<li class="header_menu_li"><a [routerLink]="['blog']" class="header_link">Blog</a></li>
+				</ul>
+			</nav>
+			<div class="tablet_menu_btn"><i class="fa fa-bars" aria-hidden="true"></i></div>
+		</div>
+
+		<div class="row">
+			<div class="header_content">
+				<h1>Welcome!</h1>
+				<h2>monthlyrepeat.com,<br />World biggest subscription Marketplace.</h2>
+				<button class="header_button" [routerLink]="['home']">Get Started</button>
+			</div>
+		</div>
+		<!-- POPUP_HEADER-->
+		<div class="open_popup close">
+			<div class="popup_body">
+				<h2>Lorem ipsum dolor.</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores nostrum, autem in perspiciatis.
+				</p>
+
+				<form action="">
+					<input type="text" class="name" placeholder="your name" required />
+					<input type="text" class="tel" placeholder="your phone number" required />
+					<textarea name="" id="" cols="30" rows="5" class="textarea tel_textarea" required>
+			</textarea>
+					<button type="submit">Send</button>
+				</form>
+				<div class="map"><iframe src="https://yandex.ru/map-widget/v1/-/CVgQBZZQ" width="560" height="400"
+						frameborder="0"></iframe></div>
+				<button class="close_open_popup">x</button>
+			</div>
+
+		</div>
+		<!--  END POPUP HEADER  -->
+	</div>
+</header>
