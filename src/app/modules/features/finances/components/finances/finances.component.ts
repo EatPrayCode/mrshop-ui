@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinancesComponent implements OnInit {
 
+  packType: any = 'finances';
+
   constructor() { }
 
   ngOnInit(): void {

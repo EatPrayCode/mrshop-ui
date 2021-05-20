@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServicesComponent implements OnInit {
 
+  packType: any = 'services';
+
   constructor() { }
 
   ngOnInit(): void {

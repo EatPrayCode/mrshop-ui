@@ -84,6 +84,13 @@ const routes: Routes = [
             (m) => m.ServicesModule
           )
       },
+      {
+        path: 'pack-detail',
+        loadChildren: () =>
+          import('./modules/features/pack-detail/pack-detail.module').then(
+            (m) => m.PackDetailModule
+          )
+      },
     ]
   },
 

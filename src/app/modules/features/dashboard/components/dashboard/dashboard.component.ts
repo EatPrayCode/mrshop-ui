@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  packType: any = 'analytics';
+
   constructor() { }
 
   ngOnInit(): void {

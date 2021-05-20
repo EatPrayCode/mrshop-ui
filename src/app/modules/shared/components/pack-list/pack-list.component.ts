@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pack-list',
@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PackListComponent implements OnInit {
 
+  @Input() packType: string = 'default';
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }
