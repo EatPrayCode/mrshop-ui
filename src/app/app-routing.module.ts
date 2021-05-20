@@ -21,6 +21,27 @@ const routes: Routes = [
           import('./modules/features/blog/blog.module').then(
             (m) => m.BlogModule
           )
+      },
+      {
+        path: 'about',
+        loadChildren: () =>
+          import('./modules/features/about/about.module').then(
+            (m) => m.AboutModule
+          )
+      },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./modules/core/settings/settings.module').then(
+            (m) => m.SettingsModule
+          )
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./modules/core/account/account.module').then(
+            (m) => m.AccountModule
+          )
       }
     ]
   },
@@ -34,7 +55,35 @@ const routes: Routes = [
           import('./modules/features/home/home.module').then(
             (m) => m.HomeModule
           )
-      }
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./modules/features/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          )
+      },
+      {
+        path: 'finances',
+        loadChildren: () =>
+          import('./modules/features/finances/finances.module').then(
+            (m) => m.FinancesModule
+          )
+      },
+      {
+        path: 'investments',
+        loadChildren: () =>
+          import('./modules/features/investments/investments.module').then(
+            (m) => m.InvestmentsModule
+          )
+      },
+      {
+        path: 'services',
+        loadChildren: () =>
+          import('./modules/features/services/services.module').then(
+            (m) => m.ServicesModule
+          )
+      },
     ]
   },
 
