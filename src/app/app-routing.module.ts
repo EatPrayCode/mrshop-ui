@@ -91,6 +91,13 @@ const routes: Routes = [
             (m) => m.PackDetailModule
           )
       },
+      {
+        path: 'checkout',
+        loadChildren: () =>
+          import('./modules/features/checkout/checkout.module').then(
+            (m) => m.CheckoutModule
+          )
+      },
     ]
   },
 
