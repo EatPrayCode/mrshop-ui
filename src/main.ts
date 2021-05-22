@@ -8,8 +8,20 @@ if (environment.production) {
   enableProdMode();
 }
 
-// Change in real app.
-setTimeout(() => {
+if (environment.production) {
+  setTimeout(() => {
+    loadApp();
+  }, 5000);
+}
+else {
+  setTimeout(() => {
+    loadApp();
+  }, 500);
+}
+
+function loadApp() {
   platformBrowserDynamic().bootstrapModule(AppModule)
     .catch(err => console.error(err));
-}, 5000)
+}
+
+// Change in real app.
