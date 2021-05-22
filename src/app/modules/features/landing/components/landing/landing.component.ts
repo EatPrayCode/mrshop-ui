@@ -12,7 +12,18 @@ export class LandingComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.initLoad();
+  }
+
+  initLoad() {
+    const menuToggle: any = document.querySelector(".toggle");
+    const showcase: any = document.querySelector(".showcase");
+    menuToggle.addEventListener("click", () => {
+      menuToggle.classList.toggle("active");
+      showcase.classList.toggle("active");
+    });
+  }
 
   getStarted() {
     this.router.navigate(['home']);

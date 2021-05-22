@@ -42,6 +42,13 @@ const routes: Routes = [
           import('./modules/core/account/account.module').then(
             (m) => m.AccountModule
           )
+      },
+      {
+        path: 'contact',
+        loadChildren: () =>
+          import('./modules/features/contact/contact.module').then(
+            (m) => m.ContactModule
+          )
       }
     ]
   },
@@ -85,7 +92,7 @@ const routes: Routes = [
           )
       },
       {
-        path: 'pack-detail',
+        path: 'pack-details',
         loadChildren: () =>
           import('./modules/features/pack-detail/pack-detail.module').then(
             (m) => m.PackDetailModule

@@ -31,19 +31,16 @@ body {
 .app-container {
   background-color: #fafafd;
   border-radius: 32px;
-  width: 90%;
   height: 90%;
-  max-width: 1400px;
   max-height: 920px;
   display: flex;
-  padding: 16px;
   overflow: hidden;
 }
 
 .app-left {
   flex: 1;
   height: 100%;
-  padding: 0 32px;
+  padding: 0 15px;
   display: flex;
   flex-direction: column;
   
