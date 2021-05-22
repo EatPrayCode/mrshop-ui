@@ -37,7 +37,31 @@ export class PackListComponent implements OnInit {
         imgSrc: 'https://i.imgur.com/w2rCsEw.jpg',
         packName: '',
         packCost: ''
-      }
+      },
+      {
+        id: '1',
+        imgSrc: 'https://i.imgur.com/w2rCsEw.jpg',
+        packName: '',
+        packCost: ''
+      },
+      {
+        id: '1',
+        imgSrc: 'https://i.imgur.com/w2rCsEw.jpg',
+        packName: '',
+        packCost: ''
+      },
+      {
+        id: '1',
+        imgSrc: 'https://i.imgur.com/w2rCsEw.jpg',
+        packName: '',
+        packCost: ''
+      },
+      {
+        id: '1',
+        imgSrc: 'https://i.imgur.com/w2rCsEw.jpg',
+        packName: '',
+        packCost: ''
+      },
     ];
 
   }

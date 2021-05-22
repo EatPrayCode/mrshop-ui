@@ -1,116 +1,127 @@
-
-.wrapper {
-    margin-top: 30px
+/*--------------------------------------------------------------
+#   N E U M O R P H I C
+--------------------------------------------------------------*/
+.neumorphic {
+    background: #e0e5ec;
+    border-radius: 1.2rem;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    max-width: 100%;
+}
+.neumorphic.outset {
+    box-shadow: 0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9), -0.2rem -0.2rem 0.4rem #f0f2f5;
+}
+.neumorphic.ridge {
+    box-shadow: inset 0.2rem 0.2rem 0.5rem rgba(195, 193, 198, 0.9), inset -0.2rem -0.2rem 0.5rem #fff,
+        0.3rem 0.3rem 0.5rem rgba(195, 193, 198, 0.9), -0.2rem -0.2rem 0.4rem #fff;
 }
 
-.card {
-    border: 1px solid #eee;
-    cursor: pointer
-}
-
-.weight {
-    margin-top: -65px;
-    transition: all 0.5s
-}
-
-.weight small {
-    color: #e2dede
-}
-
-.buttons {
-    padding: 10px;
-    background-color: #d6d4d44f;
-    border-radius: 4px;
-    position: relative;
-    margin-top: 7px;
-    transition: all 0.8s
-}
-
-.dot {
-    height: 14px;
-    width: 14px;
-    background-color: green;
-    border-radius: 50%;
-    position: absolute;
-    left: 27%;
+/*--------------------------------------------------------------
+#   G E N E R A L   C S S
+--------------------------------------------------------------*/
+.d-flex {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 8px;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.bg-green {
+    background-color: #25b47e;
+}
+.bg-blue {
+    background-color: #339af0;
+}
+.text-white {
     color: #fff;
-    opacity: 0
 }
-
-.cart-button {
-    height: 48px
+.w-80 {
+    width: 80%;
+    max-width: 80%;
 }
-
-.cart-button:focus {
-    box-shadow: none
+.maintitle {
+    width: 100%;
+    border-radius: 0;
+    padding: 1em 1.5em;
+    margin-bottom: 3em;
+    text-shadow: -1px 2px 3px #0e7d53;
+    font-weight: bold;
 }
-
+.card {
+    display: block;
+    width: 100%;
+    margin: auto;
+}
+.product {
+    margin-bottom: 1.35em;
+    padding: 0.8em 0.8em 0.5em;
+}
+.product img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    transition: 0.3s ease-in-out;
+    -webkit-transition: 0.3s ease-in-out;
+    border: 1px solid #e0e5ec;
+    height: 300px;
+}
+.product img:hover {
+    filter: blur(1.5px);
+    filter: opacity(85%);
+    transform: scale(1.15);
+    -webkit-transform: scale(1.15);
+}
+.product-image {
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 1em;
+}
+.price {
+    font-size: 1.5rem;
+}
 .cart {
-    position: relative;
-    height: 48px !important;
-    width: 50px;
-    margin-right: 8px;
+    display: flow-root;
+    margin-bottom: 0.3em;
+}
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+.btn {
+    width: 3em;
+    height: 3em;
     display: flex;
+    cursor: pointer;
+    border-radius: 50%;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
-    padding: 11px;
+    border: 1px solid #e0e5ec;
+    position: relative;
+}
+.btn.left {
+    margin-left: 1em;
+}
+.btn::before {
+    content: attr(title);
+    position: absolute;
+    background-color: #000;
     border-radius: 5px;
-    font-size: 14px;
-    transition: 1s ease-in-out;
-    overflow: hidden
+    min-width: 80px;
+    padding: 0.3em;
+    display: none;
+    z-index: 10;
+    top: -2.3em;
 }
-
-.cart-button.clicked span.dot {
-    animation: item 0.3s ease-in forwards
+.btn:hover::before {
+    display: block;
 }
-
-@keyframes item {
-    0% {
-        opacity: 1;
-        top: 30%;
-        left: 30%
+@media (min-width: 768px) {
+    .card {
+        width: 30%;
     }
-
-    25% {
-        opacity: 1;
-        left: 26%;
-        top: 0%
-    }
-
-    50% {
-        opacity: 1;
-        left: 23%;
-        top: -22%
-    }
-
-    75% {
-        opacity: 1;
-        left: 19%;
-        top: -18%
-    }
-
-    100% {
-        opacity: 1;
-        left: 14%;
-        top: 28%
-    }
-}
-
-.card:hover .buttons {
-    opacity: 1
-}
-
-.card:hover .weight {
-    margin-top: 10px
-}
-
-.card:hover {
-    transform: scale(1.04);
-    z-index: 2;
-    overflow: hidden
 }

@@ -1,1 +1,69 @@
-<p>settings works!</p>
+<header>
+    <h1>Settings</h1>
+  </header>
+  <div class='container'>
+    <div class='sidebar'>
+      <div class='sidebar__header'>
+        <img alt='' class='sidebar__avatar' src='https://unsplash.it/30/?image=209'>
+        <p>John Doe</p>
+      </div>
+      <div class='sidebar__menu-item'>
+        <i class='fa fa-university'></i>
+        Balance
+        <div class='sidebar__label'>
+          800
+        </div>
+      </div>
+      <div class='sidebar__menu-item'>
+        <i class='fa fa-bar-chart'></i>
+        Statistics
+      </div>
+      <div class='sidebar__menu-item sidebar__menu-item--active'>
+        <i class='fa fa-cog'></i>
+        Settings
+      </div>
+      <div class='sidebar__menu-item'>
+        <i class='fa fa-suitcase'></i>
+        Transactions
+      </div>
+      <div class='sidebar__menu-item'>
+        <i class='fa fa-envelope-o'></i>
+        Help
+        <div class='sidebar__badge'>
+          3
+        </div>
+      </div>
+      <div class='sidebar__menu-item'>
+        <i class='fa fa-user-plus'></i>
+        Referals
+      </div>
+    </div>
+    <div class='main'>
+      <div class='main__header'>
+        <h2>Your Settings</h2>
+      </div>
+      <div class='main__content'>
+        <div class='main__avatar'>
+          <div class='main__avatar--overlay'>
+            John Doe
+          </div>
+        </div>
+        <div class='main__settings-form'>
+          <form action='#' method='post'>
+            <label class='main__input-label'>Your name:</label>
+            <input class='main__input' placeholder='John Doe' type='text'>
+            <label class='main__input-label'>Your e-mail:</label>
+            <input class='main__input' placeholder='johndoe@gmail.com' type='text'>
+            <label class='main__input-label'>Your e-mail for notifications:</label>
+            <input class='main__input' placeholder='johndoe@gmail.com' type='text'>
+          </form>
+          <button class='btn main__save-button'>Save</button>
+          <button class='btn main__cancel-button'>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    2015 &copy; App. All rights reserved.
+  </footer>
+  
