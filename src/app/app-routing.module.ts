@@ -92,6 +92,13 @@ const routes: Routes = [
           )
       },
       {
+        path: 'pack-customise',
+        loadChildren: () =>
+          import('./modules/features/pack-customise/pack-customise.module').then(
+            (m) => m.PackCustomiseModule
+          )
+      },
+      {
         path: 'checkout',
         loadChildren: () =>
           import('./modules/features/checkout/checkout.module').then(

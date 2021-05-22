@@ -1,335 +1,95 @@
-<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-
-
-<section id="minimal-statistics">
-    <div class="row">
-      <div class="col-12 mt-3 mb-1">
-        <h4 class="text-uppercase">Minimal Statistics Cards</h4>
-        <p>Statistics on minimal cards.</p>
+<div class="app-container">
+  <div class="app-left">
+    <div class="app-header">
+      <div class="app-filter-wrapper">
+        <button class="filter-dropdown-button">
+          <span>All Categories</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down" viewBox="0 0 24 24">
+            <path d="M6 9l6 6 6-6" />
+          </svg>
+        </button>
+        <input class="filter-search-input" type="text" placeholder="Search...">
       </div>
+      <button class="action-button active">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag">
+          <defs />
+          <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0" />
+        </svg>
+      </button>
     </div>
-    <div class="row">
-      <div class="col-xl-3 col-sm-6 col-12"> 
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="align-self-center">
-                  <i class="icon-pencil primary font-large-2 float-left"></i>
-                </div>
-                <div class="media-body text-right">
-                  <h3>278</h3>
-                  <span>New Posts</span>
-                </div>
-              </div>
+    <div class="app-left-content">
+      <div class="app-left-content-header">
+        <h1 class="content-title">Discover <span>the best</span></h1>
+        <a href="#" class="content-link">See More</a>
+      </div>
+      <div class="app-content-field">
+        <div class="product-box medium">
+          <img class="product-box-image"
+            src="https://images.unsplash.com/photo-1531471689044-dd3ca86632e1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2250&q=80"
+            alt="Product">
+          <div class="product-box-details">Decoration <span>55</span></div>
+        </div>
+        <div class="product-boxes">
+          <div class="product-box-wrapper three">
+            <div class="product-box medium">
+              <img class="product-box-image"
+                src="https://images.unsplash.com/photo-1510877073473-6d4545e9c2af?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
+                alt="Product">
+              <div class="product-box-details">Tables <span>55</span></div>
+            </div>
+            <div class="product-box medium">
+              <img class="product-box-image"
+                src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80"
+                alt="Product">
+              <div class="product-box-details">Lamps <span>45</span></div>
+            </div>
+            <div class="product-box medium">
+              <img class="product-box-image"
+                src="https://images.unsplash.com/photo-1526827826797-7b05204a22ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80"
+                alt="Product">
+              <div class="product-box-details">Shelves <span>25</span></div>
+            </div>
+          </div>
+          <div class="product-box-wrapper two">
+            <div class="product-box medium">
+              <img class="product-box-image"
+                src="https://images.unsplash.com/photo-1519961655809-34fa156820ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80"
+                alt="Product">
+              <div class="product-box-details">Sofa <span>55</span></div>
+            </div>
+            <div class="product-box medium">
+              <img class="product-box-image"
+                src="https://images.unsplash.com/photo-1556910585-09baa3a3998e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1301&q=80"
+                alt="Product">
+              <div class="product-box-details">Kitchen <span>105</span></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="align-self-center">
-                  <i class="icon-speech warning font-large-2 float-left"></i>
-                </div>
-                <div class="media-body text-right">
-                  <h3>156</h3>
-                  <span>New Comments</span>
-                </div>
-              </div>
-            </div>
+      <div class="app-content-field second">
+        <div class="product-box-wrapper three">
+          <div class="product-box medium">
+            <img class="product-box-image"
+              src="https://images.unsplash.com/photo-1502920924215-5646fe685bef?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2250&q=80"
+              alt="Product">
+            <div class="product-box-details">Mirrors <span>35</span></div>
           </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="align-self-center">
-                  <i class="icon-graph success font-large-2 float-left"></i>
-                </div>
-                <div class="media-body text-right">
-                  <h3>64.89 %</h3>
-                  <span>Bounce Rate</span>
-                </div>
-              </div>
-            </div>
+          <div class="product-box medium">
+            <img class="product-box-image"
+              src="https://images.unsplash.com/photo-1453904300235-0f2f60b15b5d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1233&q=80"
+              alt="Product">
+            <div class="product-box-details">Plants <span>25</span></div>
           </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="align-self-center">
-                  <i class="icon-pointer danger font-large-2 float-left"></i>
-                </div>
-                <div class="media-body text-right">
-                  <h3>423</h3>
-                  <span>Total Visits</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="danger">278</h3>
-                  <span>New Projects</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-rocket danger font-large-2 float-right"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="success">156</h3>
-                  <span>New Clients</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-user success font-large-2 float-right"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="warning">64.89 %</h3>
-                  <span>Conversion Rate</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-pie-chart warning font-large-2 float-right"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="primary">423</h3>
-                  <span>Support Tickets</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-support primary font-large-2 float-right"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="row">
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="primary">278</h3>
-                  <span>New Posts</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-book-open primary font-large-2 float-right"></i>
-                </div>
-              </div>
-              <div class="progress mt-1 mb-0" style="height: 7px;">
-                <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="warning">156</h3>
-                  <span>New Comments</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-bubbles warning font-large-2 float-right"></i>
-                </div>
-              </div>
-              <div class="progress mt-1 mb-0" style="height: 7px;">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="success">64.89 %</h3>
-                  <span>Bounce Rate</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-cup success font-large-2 float-right"></i>
-                </div>
-              </div>
-              <div class="progress mt-1 mb-0" style="height: 7px;">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xl-3 col-sm-6 col-12">
-        <div class="card">
-          <div class="card-content">
-            <div class="card-body">
-              <div class="media d-flex">
-                <div class="media-body text-left">
-                  <h3 class="danger">423</h3>
-                  <span>Total Visits</span>
-                </div>
-                <div class="align-self-center">
-                  <i class="icon-direction danger font-large-2 float-right"></i>
-                </div>
-              </div>
-              <div class="progress mt-1 mb-0" style="height: 7px;">
-                <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section id="stats-subtitle">
-  <div class="row">
-    <div class="col-12 mt-3 mb-1">
-      <h4 class="text-uppercase">Statistics With Subtitle</h4>
-      <p>Statistics on minimal cards with Title &amp; Sub Title.</p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-xl-6 col-md-12">
-      <div class="card overflow-hidden">
-        <div class="card-content">
-          <div class="card-body cleartfix">
-            <div class="media align-items-stretch">
-              <div class="align-self-center">
-                <i class="icon-pencil primary font-large-2 mr-2"></i>
-              </div>
-              <div class="media-body">
-                <h4>Total Posts</h4>
-                <span>Monthly blog posts</span>
-              </div>
-              <div class="align-self-center">
-                <h1>18,000</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xl-6 col-md-12">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body cleartfix">
-            <div class="media align-items-stretch">
-              <div class="align-self-center">
-                <i class="icon-speech warning font-large-2 mr-2"></i>
-              </div>
-              <div class="media-body">
-                <h4>Total Comments</h4>
-                <span>Monthly blog comments</span>
-              </div>
-              <div class="align-self-center"> 
-                <h1>84,695</h1>
-              </div>
-            </div>
+          <div class="product-box medium">
+            <img class="product-box-image"
+              src="https://images.unsplash.com/photo-1604014237256-11d475e2a2d8?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80"
+              alt="Product">
+            <div class="product-box-details">Bathroom <span>25</span></div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-xl-6 col-md-12">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body cleartfix">
-            <div class="media align-items-stretch">
-              <div class="align-self-center">
-                <h1 class="mr-2">$76,456.00</h1>
-              </div>
-              <div class="media-body">
-                <h4>Total Sales</h4>
-                <span>Monthly Sales Amount</span>
-              </div>
-              <div class="align-self-center">
-                <i class="icon-heart danger font-large-2"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-xl-6 col-md-12">
-      <div class="card">
-        <div class="card-content">
-          <div class="card-body cleartfix">
-            <div class="media align-items-stretch">
-              <div class="align-self-center">
-                <h1 class="mr-2">$36,000.00</h1>
-              </div>
-              <div class="media-body">
-                <h4>Total Cost</h4>
-                <span>Monthly Cost</span>
-              </div>
-              <div class="align-self-center">
-                <i class="icon-wallet success font-large-2"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
