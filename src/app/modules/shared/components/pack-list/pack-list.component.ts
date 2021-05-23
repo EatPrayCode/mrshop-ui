@@ -65,5 +65,4 @@ export class PackListComponent implements OnInit {
     ];
 
   }
-
 }

@@ -71,61 +71,13 @@ const routes: Routes = [
           )
       },
       {
-        path: 'categories',
-        loadChildren: () =>
-          import('./modules/features/categories/categories.module').then(
-            (m) => m.CategoriesModule
-          )
-      },
-      {
         path: 'dashboard',
         loadChildren: () =>
           import('./modules/features/dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           )
       },
-      {
-        path: 'finances',
-        loadChildren: () =>
-          import('./modules/features/finances/finances.module').then(
-            (m) => m.FinancesModule
-          )
-      },
-      {
-        path: 'investments',
-        loadChildren: () =>
-          import('./modules/features/investments/investments.module').then(
-            (m) => m.InvestmentsModule
-          )
-      },
-      {
-        path: 'crowdfunding',
-        loadChildren: () =>
-          import('./modules/features/crowdfunding/crowdfunding.module').then(
-            (m) => m.CrowdfundingModule
-          )
-      },
-      {
-        path: 'store',
-        loadChildren: () =>
-          import('./modules/features/store/store.module').then(
-            (m) => m.StoreModule
-          )
-      },
-      {
-        path: 'membership',
-        loadChildren: () =>
-          import('./modules/features/membership/membership.module').then(
-            (m) => m.MembershipModule
-          )
-      },
-      {
-        path: 'services',
-        loadChildren: () =>
-          import('./modules/features/services/services.module').then(
-            (m) => m.ServicesModule
-          )
-      },
+ 
       {
         path: 'pack-details',
         loadChildren: () =>

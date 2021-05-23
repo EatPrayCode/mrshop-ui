@@ -2,20 +2,39 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
-import { SharedComponent } from './components/shared/shared.component';
 import { PackListComponent } from './components/pack-list/pack-list.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { ChartWrapperComponent } from './components/chart-wrapper/chart-wrapper.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { AppSpinnerDirective } from './directives/app-spinner';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
-    SharedComponent,
-    PackListComponent
+    PackListComponent,
+    NotFoundComponent,
+    SpinnerComponent,
+    AppSpinnerDirective,
+    ChartWrapperComponent,
+    BarChartComponent
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    HighchartsChartModule
   ],
   exports: [
-    PackListComponent
+    PackListComponent,
+    NotFoundComponent,
+    SpinnerComponent,
+    AppSpinnerDirective,
+    HighchartsChartModule,
+    ChartWrapperComponent,
+    BarChartComponent
+  ],
+  entryComponents: [
+    SpinnerComponent
   ]
 })
 export class SharedModule { }
