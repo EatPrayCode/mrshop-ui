@@ -34,6 +34,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/load-awesome/css/ball-scale-ripple-multiple.min.css",
               "src/styles.scss"
             ],
             "scripts": []

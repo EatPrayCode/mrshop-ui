@@ -8,6 +8,9 @@ import { BlankComponent } from './layouts/blank/blank.component';
 import { TopNavComponent } from './layouts/full/components/top-nav/top-nav.component';
 import { FooterComponent } from './layouts/full/components/footer/footer.component';
 import { FullComponent } from './layouts/full/components/full/full.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +23,9 @@ import { FullComponent } from './layouts/full/components/full/full.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
     SharedModule
   ],
   providers: [],

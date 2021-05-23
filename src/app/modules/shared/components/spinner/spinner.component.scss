@@ -6,7 +6,7 @@
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgb(225 243 221 / 80%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,7 +25,7 @@
 .spinner-message {
   margin-top: 10px;
   display: block;
-  color: white;
+  color: rgb(0, 0, 0);
   font-size: 14px;
   font-weight: bold;
 }

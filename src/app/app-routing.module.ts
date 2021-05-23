@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { ExtraOptions, RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/components/full/full.component';
 import { OrdersuccessComponent } from './modules/shared/components/ordersuccess/ordersuccess.component';
+
+export const routingConfiguration: ExtraOptions = {
+  paramsInheritanceStrategy: 'always'
+};
 
 const routes: Routes = [
   {
@@ -91,7 +95,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routingConfiguration)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

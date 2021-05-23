@@ -1,4 +1,4 @@
-<div class="section-fluid-main">
+<div class="section-fluid-main" *appSpinner="mainSpinner">
   <div class="section">
       <div class="info-wrap mob-margin">
           <p class="title-up">Modern chair</p>
@@ -44,7 +44,7 @@
       <label class="color-6" for="color-6"></label>
       <div class="clearfix"></div>
       <div class="info-wrap">
-          <a [routerLink]="['/home/store/all/123/customise']" class="btn"><i class="uil uil-shopping-cart icon"></i> Purchase This Pack</a>
+          <a (click)="goToCustomisePack()" class="btn"><i class="uil uil-shopping-cart icon"></i> Purchase This Pack</a>
       </div>
       <div class="img-wrap chair-1"></div>
       <div class="img-wrap chair-2"></div>

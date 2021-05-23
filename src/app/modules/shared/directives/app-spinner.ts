@@ -5,8 +5,14 @@ import { SpinnerComponent } from '../components/spinner/spinner.component';
   selector: '[appSpinner]'
 })
 export class AppSpinnerDirective {
+
   loadingFactory: ComponentFactory<SpinnerComponent>;
   loadingComponent!: ComponentRef<SpinnerComponent>;
+  
+  @Input()
+  set message(message: string) {
+    this.message = message;
+  }
 
   @Input()
   set appSpinner(loading: boolean) {

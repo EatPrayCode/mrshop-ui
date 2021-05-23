@@ -1,55 +1,52 @@
-<div class="app-container">
-    <div class="app-left">
-      <div class="app-left-content">
-        <div class="app-left-content-header">
-          <h1 class="content-title">Discover <span>the best {{currentRoute}}  Packs </span>
-            <a (click)="goToSubCategoryTest()">Here</a>
-          </h1>
-        </div>
-        <div class="app-content-field">
-          <div class="product-box medium" (click)="goToSubCategory(categoriesList[0])">
-            <img class="product-box-image"
-              [src]="categoriesList[0].imageUrl"
-              alt="Product">
-            <div class="product-box-details">{{categoriesList[0].name}} <span>{{categoriesList[0].packsCount}}</span></div>
+<div class="app-container" *appSpinner="mainSpinner">
+  <div class="app-left">
+    <div class="app-left-content">
+      <div class="app-left-content-header">
+        <h1 class="content-title">Discover <span>the best {{categoryType}} Packs </span>
+          <a (click)="goToSubCategoryTest()">Here</a>
+        </h1>
+      </div>
+      <div class="app-content-field" *ngIf="categoriesList.length">
+        <div class="product-box medium" (click)="goToSubCategory(categoriesList[0])">
+          <img class="product-box-image" [src]="categoriesList[0].imageUrl" alt="Product">
+          <div class="product-box-details">{{categoriesList[0].name}} <span>{{categoriesList[0].packsCount}}</span>
           </div>
-          <div class="product-boxes">
-            <div class="product-box-wrapper three">
-              <div class="product-box medium" (click)="goToSubCategory(categoriesList[1])">
-                <img class="product-box-image"
-                  [src]="categoriesList[1].imageUrl"
-                  alt="Product">
-                <div class="product-box-details">{{categoriesList[1].name}} <span>{{categoriesList[1].packsCount}}</span></div>
-              </div>
-              <div class="product-box medium" (click)="goToSubCategory(categoriesList[2])">
-                <img class="product-box-image"
-                  [src]="categoriesList[2].imageUrl"
-                  alt="Product">
-                <div class="product-box-details">{{categoriesList[2].name}} <span>{{categoriesList[2].packsCount}}</span></div>
-              </div>
-              <div class="product-box medium" (click)="goToSubCategory(categoriesList[3])">
-                <img class="product-box-image"
-                  [src]="categoriesList[3].imageUrl"
-                  alt="Product">
-                <div class="product-box-details">{{categoriesList[3].name}} <span>{{categoriesList[3].packsCount}}</span></div>
+        </div>
+        <div class="product-boxes">
+          <div class="product-box-wrapper three">
+            <div class="product-box medium" (click)="goToSubCategory(categoriesList[1])">
+              <img class="product-box-image" [src]="categoriesList[1].imageUrl" alt="Product">
+              <div class="product-box-details">{{categoriesList[1].name}} <span>{{categoriesList[1].packsCount}}</span>
               </div>
             </div>
-            <div class="product-box-wrapper two">
-              <div class="product-box medium" (click)="goToSubCategory(categoriesList[4])">
-                <img class="product-box-image"
-                  [src]="categoriesList[4].imageUrl"
-                  alt="Product">
-                <div class="product-box-details">{{categoriesList[4].name}} <span>{{categoriesList[4].packsCount}}</span></div>
+            <div class="product-box medium" (click)="goToSubCategory(categoriesList[2])">
+              <img class="product-box-image" [src]="categoriesList[2].imageUrl" alt="Product">
+              <div class="product-box-details">{{categoriesList[2].name}} <span>{{categoriesList[2].packsCount}}</span>
               </div>
-              <div class="product-box medium" (click)="goToSubCategory(categoriesList[5])">
-                <img class="product-box-image"
-                  [src]="categoriesList[5].imageUrl"
-                  alt="Product">
-                <div class="product-box-details">{{categoriesList[5].name}} <span>{{categoriesList[5].packsCount}}</span></div>
+            </div>
+            <div class="product-box medium" (click)="goToSubCategory(categoriesList[3])">
+              <img class="product-box-image" [src]="categoriesList[3].imageUrl" alt="Product">
+              <div class="product-box-details">{{categoriesList[3].name}} <span>{{categoriesList[3].packsCount}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="product-box-wrapper two">
+            <div class="product-box medium" (click)="goToSubCategory(categoriesList[4])">
+              <img class="product-box-image" [src]="categoriesList[4].imageUrl" alt="Product">
+              <div class="product-box-details">{{categoriesList[4].name}} <span>{{categoriesList[4].packsCount}}</span>
+              </div>
+            </div>
+            <div class="product-box medium" (click)="goToSubCategory(categoriesList[5])">
+              <img class="product-box-image" [src]="categoriesList[5].imageUrl" alt="Product">
+              <div class="product-box-details">{{categoriesList[5].name}} <span>{{categoriesList[5].packsCount}}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div *ngIf="!categoriesList.length">
+        Categories Empty. Seems like an error.
+      </div>
     </div>
   </div>
+</div>

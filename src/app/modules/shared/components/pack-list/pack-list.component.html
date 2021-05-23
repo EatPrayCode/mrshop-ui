@@ -1,6 +1,6 @@
 <h1>Showing {{packType}}</h1>
 
-<div class="d-flex w-100">
+<div class="d-flex w-100" *appSpinner="mainSpinner">
     <div *ngFor="let pack of packsList" class="card">
         <div class="product neumorphic ridge">
             <div class="product-image"><img
@@ -8,7 +8,7 @@
                     alt="Plant 1" /></div>
             <div class="cart">
                 <div class="price float-left">₱50</div>
-                <button class="btn right bg-green float-right text-white neumorphic outset"  [routerLink]="['/home/store/all/123']" type="submit"
+                <button class="btn right bg-green float-right text-white neumorphic outset" (click)="goToPack(pack)" type="submit"
                     name="explore-pack" title="Explore Pack">
                 </button>
             </div>
