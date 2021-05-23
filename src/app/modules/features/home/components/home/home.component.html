@@ -1,9 +1,20 @@
-<ul class="grid">
-  <li class="grid_item span__1 a"><a [routerLink]="['/store']" class="grid_link"><div class="tile">Store</div></a></li>
-    <li class="grid_item span__2 b"><a [routerLink]="['/services']" class="grid_link"><div class="tile">Services</div></a></li>
-    <li class="grid_item span__1 c"><a [routerLink]="['/finances']" class="grid_link"><div class="tile">Finances</div></a></li>
-    <li class="grid_item span__2 d"><a [routerLink]="['/investments']" class="grid_link"><div class="tile">Investments</div></a></li>
-    <li class="grid_item span__1 e"><a [routerLink]="['/crowdfunding']" class="grid_link"><div class="tile">Crowdfunding</div></a></li>
-    <li class="grid_item span__1 f"><a [routerLink]="['/membership']" class="grid_link"><div class="tile">Membership</div></a></li>
-    <li class="grid_item span__4 g"><a [routerLink]="['/dashboard']" class="grid_link"><div class="tile">Dashboard</div></a></li>
-</ul>
+<div id="cuadricula">
+  <div class="item" [routerLink]="['/store']" style="--color:#3E989B;">
+    <p>Store</p>
+  </div>
+  <div class="item" [routerLink]="['/services']" style="--color:#6DB465;">
+    <p>Services</p>
+  </div>
+  <div class="item" [routerLink]="['/finances']" style="--color:#F2C14E;">
+    <p>Finances</p>
+  </div>
+  <div class="item" [routerLink]="['/investments']" style="--color:#3E989B;">
+    <p>Investments</p>
+  </div>
+  <div class="item" [routerLink]="['/crowdfunding']" style="--color:#6DB465;">
+    <p>Crowdfunding</p>
+  </div>
+  <div class="item" [routerLink]="['/membership']" style="--color:#F2C14E;">
+    <p>Membership</p>
+  </div>
+</div>
