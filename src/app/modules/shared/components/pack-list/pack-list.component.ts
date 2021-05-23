@@ -63,6 +63,5 @@ export class PackListComponent implements OnInit {
         packCost: ''
       },
     ];
-
   }
 }

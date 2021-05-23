@@ -9,6 +9,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AppSpinnerDirective } from './directives/app-spinner';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { OrdersuccessComponent } from './components/ordersuccess/ordersuccess.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     SpinnerComponent,
     AppSpinnerDirective,
     ChartWrapperComponent,
-    BarChartComponent
+    BarChartComponent,
+    OrdersuccessComponent
   ],
   imports: [
     CommonModule,

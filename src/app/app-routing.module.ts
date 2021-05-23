@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/components/full/full.component';
+import { OrdersuccessComponent } from './modules/shared/components/ordersuccess/ordersuccess.component';
 
 const routes: Routes = [
   {
@@ -77,31 +78,12 @@ const routes: Routes = [
             (m) => m.DashboardModule
           )
       },
- 
       {
-        path: 'pack-details',
-        loadChildren: () =>
-          import('./modules/features/pack-detail/pack-detail.module').then(
-            (m) => m.PackDetailModule
-          )
-      },
-      {
-        path: 'pack-customise',
-        loadChildren: () =>
-          import('./modules/features/pack-customise/pack-customise.module').then(
-            (m) => m.PackCustomiseModule
-          )
-      },
-      {
-        path: 'checkout',
-        loadChildren: () =>
-          import('./modules/features/checkout/checkout.module').then(
-            (m) => m.CheckoutModule
-          )
-      },
+        path: 'order-success',
+        component: OrdersuccessComponent
+      }
     ]
   },
-
   {
     path: '**',
     redirectTo: 'home'

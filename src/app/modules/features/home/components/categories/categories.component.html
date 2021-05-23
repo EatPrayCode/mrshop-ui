@@ -2,8 +2,8 @@
     <div class="app-left">
       <div class="app-left-content">
         <div class="app-left-content-header">
-          <h1 class="content-title">Discover <span>the best </span>
-            <a [routerLink]="['/home/categories/test']">Here</a>
+          <h1 class="content-title">Discover <span>the best {{currentRoute}} </span>
+            <a (click)="goToSubCategory()">Here</a>
           </h1>
         </div>
         <div class="app-content-field">
