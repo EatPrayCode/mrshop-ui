@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   initLoad() {
     let document: any;
+    
   }
 
   goToPacks() {
