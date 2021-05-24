@@ -50,6 +50,42 @@ export class PackCustomiseComponent implements OnInit, OnDestroy {
     });
   }
 
+
+
+  tempPackCustomiseOptions: any = {
+    checkboxOptions: [],
+    singleSelectOptions: [
+      'line',
+      'square',
+      'ruler',
+      'crop',
+      'brush',
+      'resize'
+    ],
+    singleSelectOptionsPrices: [
+      '500$',
+      '1000$',
+      '1500$',
+      '2000$',
+      '2500$',
+      '5000$'
+    ],
+    multiSelectOptions: [
+      'breakfast',
+      'dinner',
+      'pick',
+      'garden',
+      'internet',
+      'parking',
+      'television',
+      'books',
+      'kayak',
+      'drink',
+      'gym',
+      'walking',
+    ]
+  };
+
   goToPackCheckout() {
     const routeUrl = `/home/${this.categoryType}/${this.subCategoryType}/${this.packId}/checkout`;
     this.router.navigateByUrl(routeUrl);
