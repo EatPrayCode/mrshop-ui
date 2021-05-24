@@ -1,7 +1,8 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SharedRoutingModule } from './shared-routing.module';
 import { PackListComponent } from './components/pack-list/pack-list.component';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { ChartWrapperComponent } from './components/chart-wrapper/chart-wrapper.component';
@@ -10,6 +11,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AppSpinnerDirective } from './directives/app-spinner';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { OrdersuccessComponent } from './components/ordersuccess/ordersuccess.component';
+import { CustomisePackComponent } from './components/customise-pack/customise-pack.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,15 @@ import { OrdersuccessComponent } from './components/ordersuccess/ordersuccess.co
     AppSpinnerDirective,
     ChartWrapperComponent,
     BarChartComponent,
-    OrdersuccessComponent
+    OrdersuccessComponent,
+    CustomisePackComponent
   ],
   imports: [
     CommonModule,
-    SharedRoutingModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     PackListComponent,
@@ -33,7 +38,8 @@ import { OrdersuccessComponent } from './components/ordersuccess/ordersuccess.co
     AppSpinnerDirective,
     HighchartsChartModule,
     ChartWrapperComponent,
-    BarChartComponent
+    BarChartComponent,
+    CustomisePackComponent
   ],
   entryComponents: [
     SpinnerComponent
