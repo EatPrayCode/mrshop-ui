@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, FormControl } from '@angular/forms';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-customize',
@@ -10,60 +9,65 @@ import { of } from 'rxjs';
 export class CustomizeComponent {
 
   form: any = new FormGroup({});
+
   ordersData: any = [];
   ordersRadio: any = [];
   optionsRadio: any = [];
 
-  get ordersFormArray() {
-    return this.form.controls.orders as FormArray;
+  constructor(private formBuilder: FormBuilder) {
+    this.buildForm();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  getPackJson(): any {
+    const item1 = {
+      name: 'Checkbox1',
+      type: 'checkbox',
+      data: [
+        { id: 100, name: 'Checkbox-1 1' },
+        { id: 200, name: 'Checkbox-2 1' },
+        { id: 300, name: 'Checkbox-3 1' },
+        { id: 400, name: 'Checkbox-4 1' }
+      ]
+    };
+    const item2 = {
+      name: 'Radio2',
+      type: 'Radio',
+      data: [
+        { id: 100, name: 'Radio-1 1' },
+        { id: 200, name: 'Radio-1 2' },
+        { id: 300, name: 'Radio-1 3' },
+        { id: 400, name: 'Radio-1 4' }
+      ]
+    };
+    const item3 = {
+      name: 'Radio1',
+      type: 'radio',
+      data: [
+        { id: 'Once', name: 'Radio-2 1' },
+        { id: 'Daily', name: 'Radio-2 2' },
+        { id: 'Weekly', name: 'Radio-2 3' },
+        { id: 'Interval', name: 'Radio-2 4' },
+      ]
+    };
+    return [item1, item2, item3];
+  }
+
+  buildForm() {
+    let json = this.getPackJson();
     this.form = this.formBuilder.group({
       orders: new FormArray([], minSelectedCheckboxes(1)),
       ordersRadio: [''],
       optionsRadio: ['']
     });
 
-    // async orders
-    of(this.getOrders()).subscribe(orders => {
-      this.ordersData = orders;
-      this.addCheckboxes();
-    });
+    this.ordersData = json[0].data;
+    this.addCheckboxes();
 
-    of(this.getOrdersRadio()).subscribe(orders => {
-      this.ordersRadio = orders;
-      this.form.controls.ordersRadio.patchValue(this.ordersRadio[0].id);
-    });
+    this.ordersRadio = json[1].data;
+    this.form.controls.ordersRadio.patchValue(this.ordersRadio[0].id);
 
-    // getOptions
-    of(this.getOptionsRadio()).subscribe(options => {
-      this.optionsRadio = options;
-      this.form.controls.optionsRadio.patchValue(this.optionsRadio[0].id);
-    })
-
-    // synchronous orders
-    // this.ordersData = this.getOrders();
-    // this.addCheckboxes();
-  }
-
-
-  getOrdersRadio() {
-    return [
-      { id: 100, name: 'order 1' },
-      { id: 200, name: 'order 2' },
-      { id: 300, name: 'order 3' },
-      { id: 400, name: 'order 4' }
-    ];
-  }
-
-  getOptionsRadio() {
-    return [
-      { id: 'Once', name: 'Once' },
-      { id: 'Daily', name: 'Daily' },
-      { id: 'Weekly', name: 'Weekly' },
-      { id: 'Interval', name: 'Interval' },
-    ]
+    this.optionsRadio = json[2].data;
+    this.form.controls.optionsRadio.patchValue(this.optionsRadio[0].id);
   }
 
   get Options() {
@@ -74,13 +78,8 @@ export class CustomizeComponent {
     this.ordersData.forEach(() => this.ordersFormArray.push(new FormControl(false)));
   }
 
-  getOrders() {
-    return [
-      { id: 100, name: 'order 1' },
-      { id: 200, name: 'order 2' },
-      { id: 300, name: 'order 3' },
-      { id: 400, name: 'order 4' }
-    ];
+  get ordersFormArray() {
+    return this.form.controls.orders as FormArray;
   }
 
   submit() {

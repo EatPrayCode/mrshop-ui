@@ -5,6 +5,7 @@
         <input type="checkbox" [formControlName]="i">
         {{ordersData[i].name}}
     </label>
+
     <br>
     <label *ngFor="let order of ordersRadio">
         <input formControlName="ordersRadio" type="radio" [value]="order.id" />
@@ -17,10 +18,10 @@
             [value]="radiobutton.id">{{radiobutton.name}}
     </label>
 
-    <div *ngIf="!form.valid">At least one order must be selected</div>
     <br>
 
     <p>Selection: {{form?.value | json}}</p>
 
-    <button [disabled]="!form.valid">submit</button>
+    <button [disabled]="!form.valid">Submit</button>
+
 </form>
