@@ -12,6 +12,7 @@ import { AppSpinnerDirective } from './directives/app-spinner';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { OrdersuccessComponent } from './components/ordersuccess/ordersuccess.component';
 import { CustomisePackComponent } from './components/customise-pack/customise-pack.component';
+import { CustomizeComponent } from './components/customize/customize.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CustomisePackComponent } from './components/customise-pack/customise-pa
     ChartWrapperComponent,
     BarChartComponent,
     OrdersuccessComponent,
-    CustomisePackComponent
+    CustomisePackComponent,
+    CustomizeComponent
   ],
   imports: [
     CommonModule,

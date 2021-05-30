@@ -1,0 +1,26 @@
+<p>customize works!</p>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <label formArrayName="orders" *ngFor="let order of ordersFormArray.controls; let i = index">
+        <input type="checkbox" [formControlName]="i">
+        {{ordersData[i].name}}
+    </label>
+    <br>
+    <label *ngFor="let order of ordersRadio">
+        <input formControlName="ordersRadio" type="radio" [value]="order.id" />
+        {{order.name}}
+    </label>
+
+    <br>
+    <label *ngFor="let radiobutton of optionsRadio">
+        <input type="radio" class="justify-right" formControlName="optionsRadio" name="optionsRadio"
+            [value]="radiobutton.id">{{radiobutton.name}}
+    </label>
+
+    <div *ngIf="!form.valid">At least one order must be selected</div>
+    <br>
+
+    <p>Selection: {{form?.value | json}}</p>
+
+    <button [disabled]="!form.valid">submit</button>
+</form>

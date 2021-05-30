@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
@@ -25,7 +26,7 @@ export class DataService {
     // const obs1$ = this.http.get<any>(url);
     return obs1$
       .pipe(
-        delay(2000),
+        delay(environment.loadLag),
         map(data => {
           return this.responseHandlerFn(payload, data)
         })
@@ -38,7 +39,7 @@ export class DataService {
     // const obs1$ = this.http.get<any>(url);
     return obs1$
       .pipe(
-        delay(2000),
+        delay(environment.loadLag),
         map(data => {
           return this.responseHandlerFn(payload, data)
         })
@@ -51,7 +52,7 @@ export class DataService {
     // const obs1$ = this.http.get<any>(url);
     return obs1$
       .pipe(
-        delay(2000),
+        delay(environment.loadLag),
         map(data => {
           return this.responseHandlerFn(payload, data)
         })
@@ -64,7 +65,7 @@ export class DataService {
     // const obs1$ = this.http.get<any>(url);
     return obs1$
       .pipe(
-        delay(2000),
+        delay(environment.loadLag),
         map(data => {
           return this.responseHandlerFn(payload, data)
         })

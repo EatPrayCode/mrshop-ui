@@ -24,4 +24,4 @@ function loadApp() {
     .catch(err => console.error(err));
 }
 
-// Change in real app.
+//TODO: Change in real app.
