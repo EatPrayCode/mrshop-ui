@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-customize',
@@ -8,10 +8,13 @@ import { FormGroup, FormArray, FormBuilder, FormControl } from '@angular/forms';
 })
 export class CustomizeComponent {
 
+  
   form: any = new FormGroup({});
+  packContents: any = [];
+  packBudget: any = [];
+  packSize: any = [];
+  packFrequency: any = [];
 
-  ordersData: any = [];
-  ordersRadio: any = [];
   optionsRadio: any = [];
 
   constructor(private formBuilder: FormBuilder) {
@@ -20,23 +23,29 @@ export class CustomizeComponent {
 
   getPackJson(): any {
     const item1 = {
-      name: 'Checkbox1',
+      name: 'PackContents',
       type: 'checkbox',
       data: [
-        { id: 100, name: 'Checkbox-1 1' },
-        { id: 200, name: 'Checkbox-2 1' },
-        { id: 300, name: 'Checkbox-3 1' },
-        { id: 400, name: 'Checkbox-4 1' }
+        { id: 1, name: 'Item 1' },
+        { id: 2, name: 'Item 2' },
+        { id: 3, name: 'Item 3' },
+        { id: 4, name: 'Item 4' },
+        { id: 5, name: 'Item 5' },
+        { id: 6, name: 'Item 6' },
+        { id: 7, name: 'Item 7' },
+        { id: 8, name: 'Item 8' },
+        { id: 9, name: 'Item 9' },
+        { id: 10, name: 'Item 10' }
       ]
     };
-    const item2 = {
-      name: 'Radio2',
+    const PackBudget = {
+      name: 'PackBudget',
       type: 'Radio',
       data: [
-        { id: 100, name: 'Radio-1 1' },
-        { id: 200, name: 'Radio-1 2' },
-        { id: 300, name: 'Radio-1 3' },
-        { id: 400, name: 'Radio-1 4' }
+        { id: 100, name: '1000' },
+        { id: 200, name: '3000' },
+        { id: 300, name: '5000' },
+        { id: 400, name: '8000' }
       ]
     };
     const item3 = {
@@ -49,45 +58,60 @@ export class CustomizeComponent {
         { id: 'Interval', name: 'Radio-2 4' },
       ]
     };
-    return [item1, item2, item3];
+    const PackSize = {
+      name: 'PackBudget',
+      type: 'Radio',
+      data: [
+        { id: 1, name: 'Bachelor' },
+        { id: 2, name: 'Mini (2 adults, 1 child)' },
+        { id: 3, name: 'Medium (2 adults, 2 child)' },
+        { id: 4, name: 'Large (2 adults, 3 child)' },
+        { id: 5, name: 'Joint (4 adults, 2+ child)' },
+        { id: 6, name: 'Custom' }
+      ]
+    };
+
+    const PackFrequency = {
+      name: 'PackFrequency',
+      type: 'Radio',
+      data: [
+        { id: 1, name: '1 Month' },
+        { id: 2, name: '3 Months' },
+        { id: 3, name: '6 Months' },
+        { id: 4, name: '9 Months' },
+        { id: 5, name: '12 months' },
+        { id: 6, name: 'Forever' }
+      ]
+    };
+    return [item1, PackBudget, item3, PackSize, PackFrequency];
   }
 
   buildForm() {
     let json = this.getPackJson();
     this.form = this.formBuilder.group({
-      orders: new FormArray([], minSelectedCheckboxes(1)),
-      ordersRadio: [''],
-      optionsRadio: ['']
+      packContents: new FormArray([], minSelectedCheckboxes(1)),
+      packBudget: [null, Validators.required],
+      packSize: [null, Validators.required],
+      packFrequency: [null, Validators.required],
     });
 
-    this.ordersData = json[0].data;
+    this.packContents = json[0].data;
+    this.packBudget = json[1].data;
+    this.packSize = json[3].data;
+    this.packFrequency = json[4].data;
     this.addCheckboxes();
-
-    this.ordersRadio = json[1].data;
-    this.form.controls.ordersRadio.patchValue(this.ordersRadio[0].id);
-
-    this.optionsRadio = json[2].data;
-    this.form.controls.optionsRadio.patchValue(this.optionsRadio[0].id);
-  }
-
-  get Options() {
-    return this.form.get('optionsRadio').value;
   }
 
   private addCheckboxes() {
-    this.ordersData.forEach(() => this.ordersFormArray.push(new FormControl(false)));
+    this.packContents.forEach(() => this.packContentsFormArray.push(new FormControl(false)));
   }
 
-  get ordersFormArray() {
-    return this.form.controls.orders as FormArray;
+  get packContentsFormArray() {
+    return this.form.controls.packContents as FormArray;
   }
 
   submit() {
-    // const selectedOrderIds = this.form.value.orders
-    //   .map((checked, i) => checked ? this.ordersData[i].id : null)
-    //   .filter(v => v !== null);
-
-    // console.log(selectedOrderIds);
+    console.log(this.form.value);
   }
 }
 
