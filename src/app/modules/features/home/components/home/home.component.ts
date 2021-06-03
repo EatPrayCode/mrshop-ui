@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   },
   {
     name: 'Investments',
-    content: 'Investments on steroids',
+    content: 'Watch your money grow magically',
     imageUrl: 'imageUrl',
     routerUrl: '/home/investments'
   },
@@ -59,8 +59,8 @@ export class HomeComponent implements OnInit {
     let document: any;
   }
 
-  goToPacks() {
-    this.router.navigate(['/pack-customise']);
+  goToCategory(category: any) {
+    this.router.navigateByUrl(category.routerUrl);
   }
 
 
