@@ -9,6 +9,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { AppSpinnerDirective } from './directives/app-spinner';
 import { OrdersuccessComponent } from './components/ordersuccess/ordersuccess.component';
 import { CustomizeComponent } from './components/customize/customize.component';
+import { CategoriesAboutComponent } from './components/categories-about/categories-about.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CustomizeComponent } from './components/customize/customize.component';
     SpinnerComponent,
     AppSpinnerDirective,
     OrdersuccessComponent,
-    CustomizeComponent
+    CustomizeComponent,
+    CategoriesAboutComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { CustomizeComponent } from './components/customize/customize.component';
     NotFoundComponent,
     SpinnerComponent,
     AppSpinnerDirective,
-    CustomizeComponent
+    CustomizeComponent,
+    CategoriesAboutComponent
   ],
   entryComponents: [
     SpinnerComponent
