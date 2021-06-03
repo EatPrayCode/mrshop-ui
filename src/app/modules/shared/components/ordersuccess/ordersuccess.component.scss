@@ -1,78 +1,58 @@
-$color-green: #8f6;
+/* 
+Practicing HTML CSS, layout based on Daily Success UI Layout, link to original codepen here: https://codepen.io/iheartkode/full/yJBBZZ/ 
+*/
 
-.container {
-  background-color: rgb(81, 219, 39);
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 2px 10px 10px rgba(#000, 0.05);
+body {
+  text-align: center;
+  font-family: Oswald;
+  margin-top: 50px;
 }
 
-$circle-size: 60px;
-
-.circle,
-.circle-border {
-  width: $circle-size;
-  height: $circle-size;
-  border-radius: 50%;
-}
-.circle {
-  z-index: 1;
-  position: relative;
-  background: white;
-  transform: scale(1);
-  animation: success-anim 700ms ease;
-}
-.circle-border {
-  z-index: 0;
-  position: absolute;
-  background: $color-green;
-  transform: scale(1.1);
-  animation: circle-anim 400ms ease;
+.main-container {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  background-color: #f0f0f0;
 }
 
-@keyframes success-anim {
-  0% {
-    transform: scale(0);
-  }
-  30% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
+.top-container {
+  height: 280px;
+  background-color: #29CDB5;
 }
 
-@keyframes circle-anim {
-  from {
-    transform: scale(0);
-  }
-  to {
-    transform: scale(1.1);
-  }
+i.bigger-size {
+  font-size: 280px;
+  color: white;
 }
 
-.success::before,
-.success::after {
-  content: "";
-  display: block;
-  height: 4px;
-  background: $color-green;
-  position: absolute;
+.bottom-container {
+  margin-top: 30px;
 }
 
-.success::before {
-  width: 17px;
-  top: 58%;
-  left: 23%;
-  transform: rotateZ(50deg);
+button {
+  font-family: Roboto;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  padding: 15px;
+  width: 150px;
+  border: 3px solid #29CDB5;
+  color: #555;
 }
 
-.success::after {
-  width: 30px;
-  top: 50%;
-  left: 35%;
-  transform: rotateZ(-50deg);
+button:hover {
+  background-color: #29CDB5;
+  color: white;
+  cursor: pointer;
+}
+
+h1 {
+  margin-bottom: -15px;
+  color: #555;
+}
+
+p {
+  font-size: 20px;
+  color: #555;
 }

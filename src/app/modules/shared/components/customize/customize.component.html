@@ -48,7 +48,8 @@
 
             </fieldset>
 
-            <button [disabled]="!form.valid">Continue</button>
+            <!-- <button [disabled]="!form.valid" [routerLink]="['/home/investments']">Continue</button> -->
+            <button [routerLink]="['checkout']">Continue</button>
 
         </form>
     </div>

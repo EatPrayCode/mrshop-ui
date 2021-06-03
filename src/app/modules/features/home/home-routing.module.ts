@@ -1,8 +1,8 @@
+import { SubCategoriesBaseComponent } from './components/sub-categories-base/sub-categories-base.component';
 import { PackCheckoutComponent } from './components/pack-checkout/pack-checkout.component';
 import { PackCustomiseComponent } from './components/pack-customise/pack-customise.component';
 import { PackCustomiseBaseComponent } from './components/pack-customise-base/pack-customise-base.component';
 import { PackDetailComponent } from './components/pack-detail/pack-detail.component';
-import { SubCategoriesBaseComponent } from './components/sub-categories-base/sub-categories-base.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoriesComponent } from './components/categories/categories.component';
@@ -16,52 +16,54 @@ import { PackdetailBaseComponent } from './components/packdetail-base/packdetail
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
-  },
-  {
-    path: ':categoryType',
     component: HomeBaseComponent,
     children: [
       {
         path: '',
-        component: CategoriesComponent
+        component: HomeComponent
       },
       {
-        path: ':subCategoryType',
+        path: ':categoryType',
         component: CategoriesBaseComponent,
         children: [
           {
             path: '',
-            component: SubCategoriesComponent,
+            component: CategoriesComponent
           },
           {
-            path: ':packId',
-            component: PackdetailBaseComponent,
+            path: ':subCategoryType',
+            component: SubCategoriesBaseComponent,
             children: [
               {
                 path: '',
-                component: PackDetailComponent,
+                component: SubCategoriesComponent
               },
               {
-                path: 'checkout',
-                component: PackCheckoutComponent,
-              },
-              {
-                path: ':customise',
-                component: PackCustomiseBaseComponent,
+                path: ':packId',
+                component: PackdetailBaseComponent,
                 children: [
                   {
                     path: '',
-                    component: PackCustomiseComponent
+                    component: PackDetailComponent
                   },
                   {
-                    path: '**',
-                    component: NotFoundComponent
-                  }
+                    path: 'customise',
+                    component: PackCustomiseBaseComponent,
+                    children: [
+                      {
+                        path: '',
+                        component: PackCustomiseComponent,
+                      },
+                      {
+                        path: 'checkout',
+                        component: PackCheckoutComponent,
+                      },
+                    ]
+                  },
                 ]
-              }
+              },
             ]
-          }
+          },
         ]
       },
     ]
