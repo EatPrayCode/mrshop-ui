@@ -8,14 +8,16 @@ import { FormGroup, FormArray, FormBuilder, FormControl, Validators } from '@ang
 })
 export class CustomizeComponent {
 
-  
+
+  test: any = [1, 2, 3, 4, 5, 6, 7, 8];
+
   form: any = new FormGroup({});
   packContents: any = [];
   packBudget: any = [];
   packSize: any = [];
   packFrequency: any = [];
 
-  optionsRadio: any = [];
+  packJson: any = [];
 
   constructor(private formBuilder: FormBuilder) {
     this.buildForm();
@@ -88,6 +90,7 @@ export class CustomizeComponent {
 
   buildForm() {
     let json = this.getPackJson();
+    this.packJson = this.getPackJson();
     this.form = this.formBuilder.group({
       packContents: new FormArray([], minSelectedCheckboxes(1)),
       packBudget: [null, Validators.required],

@@ -1,33 +1,55 @@
-<p>Customize Your Pack</p>
+<div class="row">
+    <div class="col-md-12">
+        <form [formGroup]="form" (ngSubmit)="submit()">
 
-<form [formGroup]="form" (ngSubmit)="submit()">
+            <h1> Customise your pack </h1>
 
-    <label formArrayName="packContents" *ngFor="let order of packContentsFormArray.controls; let i = index">
-        <input type="checkbox" [formControlName]="i">
-        {{packContents[i].name}}
-    </label>
+            <fieldset>
 
-    <br>
-    <label *ngFor="let order of packBudget">
-        <input formControlName="packBudget" type="radio" [value]="order.id" />
-        {{order.name}}
-    </label>
+                <legend><span class="number">1</span> Pack Contents</legend>
 
-    <br>
-    <label *ngFor="let order of packSize">
-        <input formControlName="packSize" type="radio" [value]="order.id" />
-        {{order.name}}
-    </label>
+                <label formArrayName="packContents" *ngFor="let order of packContentsFormArray.controls; let i = index">
+                    <input type="checkbox" [formControlName]="i">
+                    {{packContents[i].name}}
+                </label>
 
-    <label *ngFor="let order of packFrequency">
-        <input formControlName="packFrequency" type="radio" [value]="order.id" />
-        {{order.name}}
-    </label>
+            </fieldset>
 
-    <br>
+            <fieldset>
 
-    <p>Selection: {{form?.value | json}}</p>
+                <legend><span class="number">2</span> Family size</legend>
 
-    <button [disabled]="!form.valid">Submit</button>
+                <label *ngFor="let order of packSize">
+                    <input formControlName="packSize" type="radio" [value]="order.id" />
+                    {{order.name}}
+                </label>
 
-</form>
+            </fieldset>
+
+            <fieldset>
+
+                <legend><span class="number">3</span> Budget</legend>
+
+                <label *ngFor="let order of packBudget">
+                    <input formControlName="packBudget" type="radio" [value]="order.id" />
+                    {{order.name}}
+                </label>
+
+            </fieldset>
+
+            <fieldset>
+
+                <legend><span class="number">4</span> Pack Frequency</legend>
+
+                <label *ngFor="let order of packFrequency">
+                    <input formControlName="packFrequency" type="radio" [value]="order.id" />
+                    {{order.name}}
+                </label>
+
+            </fieldset>
+
+            <button [disabled]="!form.valid">Continue</button>
+
+        </form>
+    </div>
+</div>
