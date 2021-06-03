@@ -1,18 +1,7 @@
-<!-- 
-Practicing HTML CSS, layout based on Daily Success UI Layout, link to original codepen here: https://codepen.io/iheartkode/full/yJBBZZ/ -->
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald|Roboto">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
-
-<div class="main-container">
-  <div class="top-container">
-    <i class="fa fa-check-circle-o bigger-size" aria-hidden="true"></i>
-  </div>
-
-  <div class="bottom-container">
-    <p>Your order has been placed!</p>
-    <!-- <button [routerLink]="['/home']">View orders</button> -->
-    <button [routerLink]="['/home']">Continue</button>
-  </div>
+<div class="success-page">
+  <img src="http://share.ashiknesin.com/green-checkmark.png" class="center" alt="" />
+  <h2>Order Successful !</h2>
+  <p>We are delighted to inform you that your order has been placed</p>
+  <a [routerLink]="['/home']" class="btn-view-orders">View Orders</a>
+  <a [routerLink]="['/home']">Continue Shopping</a>
 </div>
