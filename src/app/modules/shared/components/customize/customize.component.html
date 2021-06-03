@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <form [formGroup]="form" (ngSubmit)="submit()">
+        <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="packJson">
 
             <h1> Customise your pack </h1>
 

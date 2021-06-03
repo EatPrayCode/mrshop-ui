@@ -18,7 +18,7 @@ export class PackCustomiseComponent implements OnInit, OnDestroy {
   packId: any = '';
   mainSpinner: boolean = false;
   @Input() packType: string = 'default';
-  packCustomiseOptions: any = {};
+  customizeOptions: any = {};
 
   constructor(
     private router: Router,
@@ -42,15 +42,13 @@ export class PackCustomiseComponent implements OnInit, OnDestroy {
     const payload = {
       categoryType: this.categoryType,
       subCategoryType: this.subCategoryType,
-      packId: this.packId
+      packId: this.packId,
     };
     this.api.getCustomiseOptions(payload).subscribe((response: any) => {
+      this.customizeOptions = { ...response };
       this.mainSpinner = false;
-      this.packCustomiseOptions = { ...response };
     });
   }
-
-
 
   tempPackCustomiseOptions: any = {
     checkboxOptions: [],

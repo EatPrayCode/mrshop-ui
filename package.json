@@ -18,8 +18,6 @@
     "@angular/platform-browser": "~12.0.0",
     "@angular/platform-browser-dynamic": "~12.0.0",
     "@angular/router": "~12.0.0",
-    "highcharts": "^9.1.0",
-    "highcharts-angular": "^2.10.0",
     "load-awesome": "^1.1.0",
     "jquery": "^3.6.0",
     "rxjs": "~6.6.0",
