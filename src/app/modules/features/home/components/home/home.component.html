@@ -1,41 +1,11 @@
-<div id="cuadricula">
-  <div class="item" [routerLink]="['/home/store']" style="--color:#3E989B;">
-    <p>Store</p>
-  </div>
-  <div class="item" [routerLink]="['/home/services']" style="--color:#6DB465;">
-    <p>Services</p>
-  </div>
-  <div class="item" [routerLink]="['/home/finances']" style="--color:#F2C14E;">
-    <p>Finances</p>
-  </div>
-  <div class="item" [routerLink]="['/home/investments']" style="--color:#3E989B;">
-    <p>Investments</p>
-  </div>
-  <div class="item" [routerLink]="['/home/crowdfunding']" style="--color:#6DB465;">
-    <p>Crowdfunding</p>
-  </div>
-  <div class="item" [routerLink]="['/dashboard']" style="--color:#F2C14E;">
-    <p>My Dashboard</p>
+<div class="row mb-4">
+  <div class="col-6" *ngFor="let card of cards">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{card.name}}</h5>
+        <p class="card-text">{{card.content}}</p>
+        <a href="#" class="btn btn-primary">Explore</a>
+      </div>
+    </div>
   </div>
 </div>
-
-<!-- <div class="row">
-  <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-  <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-</div> -->
