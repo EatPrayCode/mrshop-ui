@@ -1,9 +1,10 @@
+import { categoriesListMain } from './../mocks/categories.mock';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { retry, catchError, delay, map } from 'rxjs/operators';
-import { categoriesList, packCustomiseOptions, productsList } from '../mocks/categories.mock';
+import { packCustomiseOptions, productsList } from '../mocks/categories.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,8 @@ export class DataService {
   };
 
   getCategoriesList(payload: any): Observable<any> {
-    const obs1$ = of(categoriesList);
-    console.log(payload);
-    // const obs1$ = this.http.get<any>(url);
+    const categoryName: string = payload;
+    const obs1$ = of(categoriesListMain[categoryName]);
     return obs1$
       .pipe(
         delay(environment.loadLag),

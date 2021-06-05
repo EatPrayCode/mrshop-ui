@@ -1,5 +1,4 @@
 import { categoriesAbout } from './../../../../mocks/categories-about';
-import { categoriesList } from './../../../../mocks/categories.mock';
 import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/core';
 
 @Component({
