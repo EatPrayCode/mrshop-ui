@@ -1,3 +1,4 @@
+import { categoriesAbout } from './../../../../mocks/categories-about';
 import { categoriesList } from './../../../../mocks/categories.mock';
 import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/core';
 
@@ -8,7 +9,8 @@ import { Component, OnInit, SimpleChanges, OnChanges, Input } from '@angular/cor
 })
 export class CategoriesAboutComponent implements OnInit, OnChanges {
 
-  @Input() categoryType: any = {}
+  @Input() categoryType: string = '';
+  description:any = '';
 
   constructor() { }
 
@@ -16,7 +18,8 @@ export class CategoriesAboutComponent implements OnInit, OnChanges {
 
   ngOnChanges(changeRecord: SimpleChanges) {
     const record = changeRecord.categoryType;
-    const categoryType = record.currentValue || [];
+    const categoryType = record.currentValue || '';
+    this.description = categoriesAbout[categoryType].categoriesAboutText;
   }
 
 }
