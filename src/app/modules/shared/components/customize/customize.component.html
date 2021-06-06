@@ -20,6 +20,17 @@
 
             <app-customise-items-table></app-customise-items-table>
 
+            <fieldset>
+
+                <legend><span class="number">3</span> Pack Frequency</legend>
+
+                <select class="custom-select" (change)="changePackFrequency($event)" formControlName="packSize">
+                    <option value="" disabled>Choose your frequency</option>
+                    <option *ngFor="let size of packFrequency" [ngValue]="size.id">{{size.name}}</option>
+                 </select>
+
+            </fieldset>     
+
             <button [routerLink]="['checkout']">Continue</button>
 
         </form>

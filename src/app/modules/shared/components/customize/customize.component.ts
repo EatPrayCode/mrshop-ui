@@ -37,13 +37,13 @@ export class CustomizeComponent implements OnInit, OnChanges {
       // packContents: new FormArray([], minSelectedCheckboxes(1)),
       // packBudget: [null, Validators.required],
       packSize: [1, Validators.required],
-      packFrequency: [null, Validators.required],
+      packFrequency: [1, Validators.required],
     });
 
     // this.packContents = json[0].data;
     // this.packBudget = json[1].data;
     this.packSize = json[3].data;
-    // this.packFrequency = json[4].data;
+    this.packFrequency = json[4].data;
     // this.addCheckboxes();
   }
 
@@ -61,6 +61,10 @@ export class CustomizeComponent implements OnInit, OnChanges {
     // })
 
     console.log("changed pack size");
+  }
+
+  changePackFrequency(e: any) {
+
   }
 
   submit() {

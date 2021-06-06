@@ -52,6 +52,11 @@ export class PackListComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(routeUrl);
   }
 
+  goToCustomisePack(packObject: any) {
+    const routeUrl = `/home/${this.categoryType}/${this.subCategoryType}/${packObject.id}/customise`;
+    this.router.navigateByUrl(routeUrl);
+  }
+
   ngOnDestroy() {
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
