@@ -6,13 +6,13 @@ export const categoriesListStore = [
     packsCount: 4
   },
   {
-    name: 'Milk/Dairy',
+    name: 'MilkDairy',
     imageUrl: 'https://images.unsplash.com/photo-1510877073473-6d4545e9c2af?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Eggs/Meat',
+    name: 'EggsMeat',
     imageUrl: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
@@ -54,13 +54,13 @@ export const categoriesListStore = [
     packsCount: 4
   },
   {
-    name: 'Health/Wellbeing',
+    name: 'HealthWellbeing',
     imageUrl: 'https://images.unsplash.com/photo-1519961655809-34fa156820ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Social Media',
+    name: 'SocialMedia',
     imageUrl: 'https://images.unsplash.com/photo-1556910585-09baa3a3998e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1301&q=80',
     routeUrl: '',
     packsCount: 4
@@ -120,31 +120,31 @@ export const categoriesListServices = [
 
 export const categoriesListFinance = [
   {
-    name: 'CC EMI',
+    name: 'CCEMI',
     imageUrl: 'https://images.unsplash.com/photo-1531471689044-dd3ca86632e1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2250&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Loan EMI',
+    name: 'LoanEMI',
     imageUrl: 'https://images.unsplash.com/photo-1510877073473-6d4545e9c2af?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Mobile Recharge',
+    name: 'MobileRecharge',
     imageUrl: 'https://images.unsplash.com/photo-1556910585-09baa3a3998e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1301&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Bill Payments',
+    name: 'BillPayments',
     imageUrl: 'https://images.unsplash.com/photo-1556910585-09baa3a3998e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1301&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Home Rentals',
+    name: 'HomeRentals',
     imageUrl: 'https://images.unsplash.com/photo-1556910585-09baa3a3998e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1301&q=80',
     routeUrl: '',
     packsCount: 4
@@ -165,13 +165,13 @@ export const categoriesListInvestments = [
     packsCount: 4
   },
   {
-    name: 'Chit Funds',
+    name: 'ChitFunds',
     imageUrl: 'https://images.unsplash.com/photo-1519961655809-34fa156820ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Crypto Coins',
+    name: 'CryptoCoins',
     imageUrl: 'https://images.unsplash.com/photo-1519961655809-34fa156820ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
@@ -180,49 +180,49 @@ export const categoriesListInvestments = [
 
 export const categoriesListCrowdfunding = [
   {
-    name: 'Animal Husbandary',
+    name: 'AnimalHusbandary',
     imageUrl: 'https://images.unsplash.com/photo-1531471689044-dd3ca86632e1?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2250&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Rubber Inc',
+    name: 'RubberInc',
     imageUrl: 'https://images.unsplash.com/photo-1510877073473-6d4545e9c2af?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Paper Inc',
+    name: 'PaperInc',
     imageUrl: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Coffee Inc',
+    name: 'CoffeeInc',
     imageUrl: 'https://images.unsplash.com/photo-1526827826797-7b05204a22ef?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Clothing Inc',
+    name: 'ClothingInc',
     imageUrl: 'https://images.unsplash.com/photo-1519961655809-34fa156820ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Smartphone Inc',
+    name: 'SmartphoneInc',
     imageUrl: 'https://images.unsplash.com/photo-1519961655809-34fa156820ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'WaveRock Sez',
+    name: 'WaveRockSez',
     imageUrl: 'https://images.unsplash.com/photo-1519961655809-34fa156820ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
   },
   {
-    name: 'Semiconductors Inc',
+    name: 'SemiconductorsInc',
     imageUrl: 'https://images.unsplash.com/photo-1519961655809-34fa156820ff?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1234&q=80',
     routeUrl: '',
     packsCount: 4
