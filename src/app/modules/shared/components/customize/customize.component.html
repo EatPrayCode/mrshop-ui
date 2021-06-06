@@ -1,54 +1,25 @@
 <div class="row">
     <div class="col-md-12">
+
+        <h1> Customise your pack </h1>
+
         <form [formGroup]="form" (ngSubmit)="submit()" *ngIf="packJson">
 
-            <h1> Customise your pack </h1>
-
             <fieldset>
 
-                <legend><span class="number">1</span> Pack Contents</legend>
+                <legend><span class="number">1</span> Family Size</legend>
 
-                <label formArrayName="packContents" *ngFor="let order of packContentsFormArray.controls; let i = index">
-                    <input type="checkbox" [formControlName]="i">
-                    {{packContents[i].name}}
-                </label>
+                <select class="custom-select" (change)="changePackSize($event)" formControlName="packSize">
+                    <option value="" disabled>Choose your family Size</option>
+                    <option *ngFor="let size of packSize" [ngValue]="size.id">{{size.name}}</option>
+                 </select>    
 
-            </fieldset>
+            </fieldset>             
 
-            <fieldset>
+            <legend><span class="number">2</span> Pack Contents</legend>
 
-                <legend><span class="number">2</span> Family size</legend>
+            <app-customise-items-table></app-customise-items-table>
 
-                <label *ngFor="let order of packSize">
-                    <input formControlName="packSize" type="radio" [value]="order.id" />
-                    {{order.name}}
-                </label>
-
-            </fieldset>
-
-            <fieldset>
-
-                <legend><span class="number">3</span> Budget</legend>
-
-                <label *ngFor="let order of packBudget">
-                    <input formControlName="packBudget" type="radio" [value]="order.id" />
-                    {{order.name}}
-                </label>
-
-            </fieldset>
-
-            <fieldset>
-
-                <legend><span class="number">4</span> Pack Frequency</legend>
-
-                <label *ngFor="let order of packFrequency">
-                    <input formControlName="packFrequency" type="radio" [value]="order.id" />
-                    {{order.name}}
-                </label>
-
-            </fieldset>
-
-            <!-- <button [disabled]="!form.valid" [routerLink]="['/home/investments']">Continue</button> -->
             <button [routerLink]="['checkout']">Continue</button>
 
         </form>

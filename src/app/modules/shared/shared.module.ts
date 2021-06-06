@@ -1,3 +1,5 @@
+import { CustomiseItemsTableComponent } from './components/customise-items-table/customise-items-table.component';
+import { DemoMaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -19,13 +21,15 @@ import { CategoriesAboutComponent } from './components/categories-about/categori
     AppSpinnerDirective,
     OrdersuccessComponent,
     CustomizeComponent,
-    CategoriesAboutComponent
+    CategoriesAboutComponent,
+    CustomiseItemsTableComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DemoMaterialModule
   ],
   exports: [
     PackListComponent,
@@ -33,7 +37,9 @@ import { CategoriesAboutComponent } from './components/categories-about/categori
     SpinnerComponent,
     AppSpinnerDirective,
     CustomizeComponent,
-    CategoriesAboutComponent
+    CategoriesAboutComponent,
+    DemoMaterialModule,
+    CustomiseItemsTableComponent
   ],
   entryComponents: [
     SpinnerComponent

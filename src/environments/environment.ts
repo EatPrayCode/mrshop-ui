@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  loadLag: 2
+  loadLag: 1
 };
 
 /*

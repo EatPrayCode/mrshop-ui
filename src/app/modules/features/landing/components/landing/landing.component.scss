@@ -1,8 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 
-:root {
-  --overlay-color: #31385C;
-}
 
 * {
   margin: 0;
@@ -20,7 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #111;
+  background: green;
   color: #fff;
   transition: 0.5s;
   z-index: 2;

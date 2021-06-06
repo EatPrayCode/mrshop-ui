@@ -27,24 +27,24 @@ export class CustomizeComponent implements OnInit, OnChanges {
     const record = changeRecord.customizeOptions;
     const customizeOptions = record.currentValue || [];
     this.packJson = customizeOptions.packJson || null;
-    if(this.packJson){
+    if (this.packJson) {
       this.buildForm(this.packJson);
     }
   }
 
   buildForm(json: any) {
     this.form = this.formBuilder.group({
-      packContents: new FormArray([], minSelectedCheckboxes(1)),
-      packBudget: [null, Validators.required],
-      packSize: [null, Validators.required],
+      // packContents: new FormArray([], minSelectedCheckboxes(1)),
+      // packBudget: [null, Validators.required],
+      packSize: [1, Validators.required],
       packFrequency: [null, Validators.required],
     });
 
-    this.packContents = json[0].data;
-    this.packBudget = json[1].data;
+    // this.packContents = json[0].data;
+    // this.packBudget = json[1].data;
     this.packSize = json[3].data;
-    this.packFrequency = json[4].data;
-    this.addCheckboxes();
+    // this.packFrequency = json[4].data;
+    // this.addCheckboxes();
   }
 
   private addCheckboxes() {
@@ -53,6 +53,14 @@ export class CustomizeComponent implements OnInit, OnChanges {
 
   get packContentsFormArray() {
     return this.form.controls.packContents as FormArray;
+  }
+
+  changePackSize(e: any) {
+    // this.packSize.setValue(e.target.value, {
+    //   onlySelf: true
+    // })
+
+    console.log("changed pack size");
   }
 
   submit() {
