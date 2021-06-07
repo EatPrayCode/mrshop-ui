@@ -14,6 +14,7 @@ import { HomeBaseComponent } from './components/home-base/home-base.component';
 import { PackdetailBaseComponent } from './components/packdetail-base/packdetail-base.component';
 import { PackCustomiseBaseComponent } from './components/pack-customise-base/pack-customise-base.component';
 import { PackCheckoutComponent } from './components/pack-checkout/pack-checkout.component';
+import { PackSummaryDialogComponent } from './components/pack-summary-dialog/pack-summary-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PackCheckoutComponent } from './components/pack-checkout/pack-checkout.
     PackDetailComponent,
     PackCustomiseBaseComponent,
     PackCustomiseComponent,
-    PackCheckoutComponent
+    PackCheckoutComponent,
+    PackSummaryDialogComponent
   ],
   imports: [
     CommonModule,

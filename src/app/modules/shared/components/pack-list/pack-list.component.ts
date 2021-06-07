@@ -1,6 +1,6 @@
 import { delay } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router, ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
 import { DataService } from 'src/app/services/data.service';
@@ -18,6 +18,8 @@ export class PackListComponent implements OnInit, OnDestroy {
   mainSpinner: boolean = false;
   @Input() packType: string = 'default';
   packsList: any = [];
+
+  @Output() viewPackSummaryEvt = new EventEmitter();
 
   constructor(
     private router: Router,
@@ -55,6 +57,10 @@ export class PackListComponent implements OnInit, OnDestroy {
   goToCustomisePack(packObject: any) {
     const routeUrl = `/home/${this.categoryType}/${this.subCategoryType}/${packObject.id}/customise`;
     this.router.navigateByUrl(routeUrl);
+  }
+
+  viewPackSummary(pack: any) {
+    this.viewPackSummaryEvt.emit(pack);
   }
 
   ngOnDestroy() {
