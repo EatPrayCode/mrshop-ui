@@ -1,6 +1,11 @@
 <form [formGroup]="form">
 
-	<div formArrayName="items" *ngFor="let creds of form.controls.items?.value; let i = index;trackBy:trackFn">
+	<select (ngModelChange)="changePackSize($event)" formControlName="packSize">
+		<option *ngFor="let size of packSizes;" [ngValue]="size">
+			{{size.value}} </option>
+	</select>
+
+	<div formArrayName="items" *ngFor="let items of form.controls.items?.value; let i = index;trackBy:trackFn">
 
 		<div [formGroupName]="i" style="display: flex">
 
@@ -19,10 +24,6 @@
 				<input placeholder="Price" formControlName="price">
 			</div>
 
-			<div>
-				<input placeholder="Label" formControlName="label">
-			</div>
-
 			<select (ngModelChange)="changeQuantity($event,i)" formControlName="quantity">
 				<option *ngFor="let quantity of (form.controls.items?.value)[i].quantityList;" [ngValue]="quantity">
 					{{quantity.value}} </option>
@@ -39,5 +40,6 @@
 </form>
 
 <pre>
-	{{(form.controls.items?.value)|json}}
+	PackSize: {{(form.controls.packSize?.value)|json}}
+	Total: {{(form.controls.packTotal?.value)|json}}
 </pre>

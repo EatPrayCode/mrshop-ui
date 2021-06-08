@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-customise-items-table',
@@ -9,57 +8,197 @@ import { Observable } from 'rxjs';
 })
 export class CustomiseItemsTableComponent {
 
-  form: FormGroup;
-  hideArray: Array<boolean> = [];
+  form: FormGroup = new FormGroup({});
+
+  json: any = {
+    "packSize": "big",
+    "items": [
+      {
+        "isChecked": true,
+        "name": "Items Name 1",
+        "price": 2000,
+        "brand": {
+          "key": "adidas",
+          "value": "Adidas",
+          "price": 1499
+        },
+        "variant": {
+          "key": "blue",
+          "value": "Blue"
+        },
+        "quantity": {
+          "key": "2",
+          "value": "2"
+        },
+        "brandsList": [
+          {
+            "key": "reebok",
+            "value": "Reebok",
+            "price": 1500
+          },
+          {
+            "key": "adidas",
+            "value": "Adidas",
+            "price": 1499
+          },
+          {
+            "key": "itc",
+            "value": "ITC",
+            "price": 1600
+          }
+        ],
+        "quantityList": [
+          {
+            "key": "1/2",
+            "value": "1/2"
+          },
+          {
+            "key": "1",
+            "value": "1"
+          },
+          {
+            "key": "2",
+            "value": "2"
+          }
+        ],
+        "variantsList": [
+          {
+            "key": "red",
+            "value": "Red"
+          },
+          {
+            "key": "green",
+            "value": "Green"
+          },
+          {
+            "key": "blue",
+            "value": "Blue"
+          }
+        ]
+      },
+      {
+        "isChecked": false,
+        "name": "Item Name 2",
+        "price": 1000,
+        "brand": {
+          "key": "adidas",
+          "value": "Adidas",
+          "price": 1499
+        },
+        "variant": {
+          "key": "green",
+          "value": "Green"
+        },
+        "quantity": {
+          "key": "1",
+          "value": "1"
+        },
+        "brandsList": [
+          {
+            "key": "reebok",
+            "value": "Reebok",
+            "price": 1500
+          },
+          {
+            "key": "adidas",
+            "value": "Adidas",
+            "price": 1499
+          },
+          {
+            "key": "itc",
+            "value": "ITC",
+            "price": 1600
+          }
+        ],
+        "quantityList": [
+          {
+            "key": "1/2",
+            "value": "1/2"
+          },
+          {
+            "key": "1",
+            "value": "1"
+          },
+          {
+            "key": "2",
+            "value": "2"
+          }
+        ],
+        "variantsList": [
+          {
+            "key": "red",
+            "value": "Red"
+          },
+          {
+            "key": "green",
+            "value": "Green"
+          },
+          {
+            "key": "blue",
+            "value": "Blue"
+          }
+        ]
+      }
+    ]
+  };
+
+  packSizes: any = [
+    { id: 1, value: 'small' },
+    { id: 2, value: 'big' },
+    { id: 3, value: 'large' }
+  ];
 
   constructor(private fb: FormBuilder) {
+    this.initPackSize('large', this.json);
+  }
+
+  initPackSize(packSize: any, json: any) {
     this.form = this.fb.group({
-      items: this.fb.array([])
+      packSize: [packSize],
+      items: this.fb.array([]),
+      packTotal: [0]
     });
-    this.initItemsList(null);
+    this.initItemsList(json.items || []);
   }
 
   initItemsList(list: any) {
-    list = list || [{}, {}, {}];
     list.forEach((item: any) => {
       this.addItem(item);
+    });
+    this.setPackTotal();
+  }
+
+  setPackTotal() {
+    const itemsFormArray = this.form.controls.items as FormArray;
+    let items = itemsFormArray.value;
+    items = items.filter((ele: any) => {
+      return ele.isChecked
+    });
+    const packTotal = items.reduce((a: any, b: any) => a + +b.price, 0);
+    this.form.patchValue({
+      packTotal: packTotal
     });
   }
 
   addItem(item: any) {
-    const creds = this.form.controls.items as FormArray;
-    const brands = [
-      { key: "reebok", value: "Reebok", price: 1500 },
-      { key: "adidas", value: "Adidas", price: 1499 },
-      { key: "itc", value: "ITC", price: 1600 }
-    ];
-    const quantityList = [
-      { key: "1/2", value: "1/2" },
-      { key: "1", value: "1" },
-      { key: "2", value: "2" }
-    ];
-    const variantsList = [
-      { key: "red", value: "Red" },
-      { key: "green", value: "Green" },
-      { key: "blue", value: "Blue" }
-    ];
-    creds.push(
+    const itemsFormArray = this.form.controls.items as FormArray;
+    const quantityIndex = item.quantityList.findIndex((x: any) => x.key === item.quantity.key);
+    const variantIndex = item.variantsList.findIndex((x: any) => x.key === item.variant.key);
+    const brandIndex = item.brandsList.findIndex((x: any) => x.key === item.brand.key);
+
+    itemsFormArray.push(
       this.fb.group({
-        action: "",
-        isChecked: "",
-        name: { disabled: true, value: "" },
-        label: { disabled: true, value: "" },
-        price: { disabled: true, value: "" },
-        brand: { disabled: true, value: "" },
-        variant: { disabled: true, value: "" },
-        quantity: { disabled: true, value: "" },
-        toggle: false,
-        brandsList: ([brands]),
-        quantityList: ([quantityList]),
-        variantsList: ([variantsList]),
+        isChecked: (item.isChecked),
+        name: (item.name),
+        price: (item.price),
+        brand: (item.brandsList[brandIndex]),
+        variant: (item.variantsList[variantIndex]),
+        quantity: new FormControl(item.quantityList[quantityIndex]),
+        brandsList: ([item.brandsList]),
+        quantityList: ([item.quantityList]),
+        variantsList: ([item.variantsList]),
       })
     );
-    this.hideArray.push(false);
   }
 
   changeBrand(e: any, index: any) {
@@ -68,6 +207,7 @@ export class CustomiseItemsTableComponent {
     myForm.patchValue({
       price: newPrice
     });
+    this.setPackTotal();
   }
 
   changeVariant(e: any, index: any) {
@@ -76,6 +216,7 @@ export class CustomiseItemsTableComponent {
     myForm.patchValue({
       price: newPrice
     });
+    this.setPackTotal();
   }
 
   changeCheckbox(e: any, index: any) {
@@ -91,6 +232,7 @@ export class CustomiseItemsTableComponent {
       myForm.get("variant")?.disable();
       myForm.get("brand")?.disable();
     }
+    this.setPackTotal();
   }
 
   changeQuantity(e: any, index: any) {
@@ -100,9 +242,13 @@ export class CustomiseItemsTableComponent {
     });
   }
 
+  changePackSize(e: any) {
+    const packSize = 'big';
+    this.initPackSize(packSize, this.json);
+  }
+
   trackFn(index: any) {
     return index;
   }
 
 }
-
