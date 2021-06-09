@@ -1,3 +1,4 @@
+import { mockData } from './mockJsonPacks';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
@@ -10,162 +11,39 @@ export class CustomiseItemsTableComponent {
 
   form: FormGroup = new FormGroup({});
 
-  json: any = {
-    "packSize": "big",
-    "items": [
-      {
-        "isChecked": true,
-        "name": "Items Name 1",
-        "price": 2000,
-        "brand": {
-          "key": "adidas",
-          "value": "Adidas",
-          "price": 1499
-        },
-        "variant": {
-          "key": "blue",
-          "value": "Blue"
-        },
-        "quantity": {
-          "key": "2",
-          "value": "2"
-        },
-        "brandsList": [
-          {
-            "key": "reebok",
-            "value": "Reebok",
-            "price": 1500
-          },
-          {
-            "key": "adidas",
-            "value": "Adidas",
-            "price": 1499
-          },
-          {
-            "key": "itc",
-            "value": "ITC",
-            "price": 1600
-          }
-        ],
-        "quantityList": [
-          {
-            "key": "1/2",
-            "value": "1/2"
-          },
-          {
-            "key": "1",
-            "value": "1"
-          },
-          {
-            "key": "2",
-            "value": "2"
-          }
-        ],
-        "variantsList": [
-          {
-            "key": "red",
-            "value": "Red"
-          },
-          {
-            "key": "green",
-            "value": "Green"
-          },
-          {
-            "key": "blue",
-            "value": "Blue"
-          }
-        ]
-      },
-      {
-        "isChecked": false,
-        "name": "Item Name 2",
-        "price": 1000,
-        "brand": {
-          "key": "adidas",
-          "value": "Adidas",
-          "price": 1499
-        },
-        "variant": {
-          "key": "green",
-          "value": "Green"
-        },
-        "quantity": {
-          "key": "1",
-          "value": "1"
-        },
-        "brandsList": [
-          {
-            "key": "reebok",
-            "value": "Reebok",
-            "price": 1500
-          },
-          {
-            "key": "adidas",
-            "value": "Adidas",
-            "price": 1499
-          },
-          {
-            "key": "itc",
-            "value": "ITC",
-            "price": 1600
-          }
-        ],
-        "quantityList": [
-          {
-            "key": "1/2",
-            "value": "1/2"
-          },
-          {
-            "key": "1",
-            "value": "1"
-          },
-          {
-            "key": "2",
-            "value": "2"
-          }
-        ],
-        "variantsList": [
-          {
-            "key": "red",
-            "value": "Red"
-          },
-          {
-            "key": "green",
-            "value": "Green"
-          },
-          {
-            "key": "blue",
-            "value": "Blue"
-          }
-        ]
-      }
-    ]
-  };
-
-  packSizes: any = [
-    { id: 1, value: 'small' },
-    { id: 2, value: 'big' },
-    { id: 3, value: 'large' }
-  ];
+  inputData: any = mockData;
 
   constructor(private fb: FormBuilder) {
-    this.initPackSize('large', this.json);
+    this.initPackSize(this.inputData.packSizes[0], this.inputData.packTemplates[0], this.inputData);
   }
 
-  initPackSize(packSize: any, json: any) {
+  initPackSize(packSize: any, template: any, inputData: any) {
     this.form = this.fb.group({
+      packName: [inputData.packName],
+      packTemplate: [template],
       packSize: [packSize],
       items: this.fb.array([]),
       packTotal: [0]
     });
-    this.initItemsList(json.items || []);
+    this.initItemsList(template.value.items || []);
+  }
+
+  changePackSizeFn(packSize: any) {
+    const itemsFormArray = this.form.controls.items as FormArray;
+    itemsFormArray.controls.forEach((element, index) => {
+      const quantityList = element.get("quantityList")?.value;
+      const quantityIndex = quantityList.findIndex((x: any) => x.key === packSize.key);
+      element.patchValue({
+        quantity: (quantityList[quantityIndex])
+      });
+    });
   }
 
   initItemsList(list: any) {
     list.forEach((item: any) => {
       this.addItem(item);
     });
-    this.setPackTotal();
+    this.runOverFn();
   }
 
   setPackTotal() {
@@ -181,70 +59,99 @@ export class CustomiseItemsTableComponent {
   }
 
   addItem(item: any) {
-    const itemsFormArray = this.form.controls.items as FormArray;
-    const quantityIndex = item.quantityList.findIndex((x: any) => x.key === item.quantity.key);
-    const variantIndex = item.variantsList.findIndex((x: any) => x.key === item.variant.key);
-    const brandIndex = item.brandsList.findIndex((x: any) => x.key === item.brand.key);
+    const itemsFormArray = (<FormArray>this.form.get("items")) as FormArray;
+    const quantityIndex = item.quantity ? item.quantityList.findIndex((x: any) => x.key === item.quantity.key) : 0;
+    const brandIndex = item.brand ? item.brandsList.findIndex((x: any) => x.key === item.brand.key) : 0;
+    const brand = item.brandsList[brandIndex];
+    const variantsList = brand.variantsList;
+    const variantIndex = item.variant ? variantsList.findIndex((x: any) => x.key === item.variant.key) : 0;
+    const variant = variantsList[variantIndex];
+
+    const pricePerItem = variant.price;
+    const quantity = item.quantity || item.quantityList[quantityIndex];
+    const totalPricePerItem = (pricePerItem * quantity.value || 0);
 
     itemsFormArray.push(
       this.fb.group({
         isChecked: (item.isChecked),
         name: (item.name),
-        price: (item.price),
-        brand: (item.brandsList[brandIndex]),
-        variant: (item.variantsList[variantIndex]),
-        quantity: new FormControl(item.quantityList[quantityIndex]),
+        pricePerItem: (pricePerItem),
+        totalPricePerItem: (totalPricePerItem),
+        brand: (brand),
+        variant: (variant),
+        quantity: new FormControl(quantity),
         brandsList: ([item.brandsList]),
         quantityList: ([item.quantityList]),
-        variantsList: ([item.variantsList]),
+        variantsList: ([variantsList]),
       })
     );
   }
 
   changeBrand(e: any, index: any) {
-    const newPrice = 1000;
     const myForm = (<FormArray>this.form.get("items")).at(index);
+    const variantsList: any = myForm.value.brand.variantsList;
+    const variant = variantsList[0]||{};
+
     myForm.patchValue({
-      price: newPrice
+      variantsList: variantsList,
+      variant: variant,
     });
-    this.setPackTotal();
+    this.runOverFn();
   }
 
-  changeVariant(e: any, index: any) {
-    const newPrice = 2000;
-    const myForm = (<FormArray>this.form.get("items")).at(index);
-    myForm.patchValue({
-      price: newPrice
+  runOverFn() {
+    const itemsFormArray = (<FormArray>this.form.get("items")) as FormArray;
+    const disableEnableOptions = { emitEvent: false };
+    itemsFormArray.controls.forEach((element, index) => {
+      const isChecked = element.get("isChecked")?.value;
+      if (isChecked) {
+        element.get("quantity")?.enable();
+        element.get("variant")?.enable();
+        element.get("brand")?.enable();
+        element.get("pricePerItem")?.enable();
+        element.get("totalPricePerItem")?.enable();
+        const item = element.value;
+        const pricePerItem = item.variant.price;
+        const quantity = item.quantity;
+        const totalPricePerItem = (pricePerItem * quantity.value);
+        element.patchValue({
+          totalPricePerItem: totalPricePerItem,
+          pricePerItem: pricePerItem
+        }, disableEnableOptions);
+      }
+      else {
+        element.get("quantity")?.disable();
+        element.get("variant")?.disable();
+        element.get("brand")?.disable();
+        element.get("pricePerItem")?.disable();
+        element.get("totalPricePerItem")?.disable();
+        element.get("name")?.disable();
+      }
     });
-    this.setPackTotal();
-  }
-
-  changeCheckbox(e: any, index: any) {
-    const myForm = (<FormArray>this.form.get("items")).at(index);
-    const isChecked = myForm.get("isChecked")?.value;
-    if (isChecked) {
-      myForm.get("quantity")?.enable();
-      myForm.get("variant")?.enable();
-      myForm.get("brand")?.enable();
-    }
-    else {
-      myForm.get("quantity")?.disable();
-      myForm.get("variant")?.disable();
-      myForm.get("brand")?.disable();
-    }
     this.setPackTotal();
   }
 
   changeQuantity(e: any, index: any) {
-    const myForm = (<FormArray>this.form.get("items")).at(index);
-    myForm.patchValue({
-      price: 2000
-    });
+    this.runOverFn();
+  }
+
+  changeVariant(e: any, index: any) {
+    this.runOverFn();
+  }
+
+  changeCheckbox(e: any, index: any) {
+    this.runOverFn();
   }
 
   changePackSize(e: any) {
-    const packSize = 'big';
-    this.initPackSize(packSize, this.json);
+    this.changePackSizeFn(e);
+  }
+
+  changePackTemplate(e: any) {
+    const packTemplates = this.inputData.packTemplates;
+    const templateIndex = packTemplates.findIndex((x: any) => x.key === e.key);
+    const packSize = this.form.controls.packSize.value;
+    this.initPackSize(packSize, packTemplates[templateIndex], this.inputData);
   }
 
   trackFn(index: any) {

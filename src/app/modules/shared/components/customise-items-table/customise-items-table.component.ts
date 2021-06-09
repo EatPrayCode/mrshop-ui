@@ -1,101 +1,6 @@
-import { Component, OnDestroy } from "@angular/core";
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
-import { MatTableDataSource } from "@angular/material/table";
-import { distinctUntilChanged } from "rxjs/operators";
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  indexCache: number;
-  weight: number;
-  symbol: string;
-  isCheck: boolean;
-  type: String;
-  quantityTypes: any;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    indexCache: 0,
-    name: "Rice",
-    weight: 1.0079,
-    symbol: "H",
-    isCheck: true,
-    type: "Regular",
-    quantityTypes: [{ value: 'steak-Rice', viewValue: 'SteakRice1' }, { value: 'steak-Rice', viewValue: 'SteakRice2' },]
-  },
-  {
-    position: 2,
-    indexCache: 1,
-    name: "Coffee",
-    weight: 4.0026,
-    symbol: "He",
-    isCheck: false,
-    type: "Regular",
-    quantityTypes: [{ value: 'steak-Coffee', viewValue: 'SteakCoffee1' }, { value: 'steak-Coffee', viewValue: 'SteakCoffee2' },]
-  },
-  {
-    position: 3,
-    indexCache: 2,
-    name: "Dal",
-    weight: 6.941,
-    symbol: "Li",
-    isCheck: false,
-    type: "Not Regular",
-    quantityTypes: [{ value: 'steak-Dal', viewValue: 'SteakDal1' }, { value: 'steak-Dal', viewValue: 'SteakDal2' },]
-  },
-  {
-    position: 4,
-    indexCache: 3,
-    name: "Sugar",
-    weight: 9.0122,
-    symbol: "Be",
-    isCheck: false,
-    type: "Regular",
-    quantityTypes: [{ value: 'steak-Sugar', viewValue: 'SteakSugar1' }, { value: 'steak-Sugar', viewValue: 'SteakSugar2' },]
-  },
-  {
-    position: 5,
-    indexCache: 4,
-    name: "Salt",
-    weight: 10.811,
-    symbol: "B",
-    isCheck: false,
-    type: "Regular",
-    quantityTypes: [{ value: 'steak-Salt', viewValue: 'SteakSalt1' }, { value: 'steak-Salt', viewValue: 'SteakSalt2' },]
-  },
-  {
-    position: 6,
-    indexCache: 5,
-    name: "Pepper",
-    weight: 12.0107,
-    symbol: "C",
-    isCheck: false,
-    type: "Not Regular",
-    quantityTypes: [{ value: 'steak-Pepper', viewValue: 'SteakPepper1' }, { value: 'steak-Pepper', viewValue: 'SteakPepper2' },]
-  },
-  {
-    position: 7,
-    indexCache: 6,
-    name: "Pulses",
-    weight: 14.0067,
-    symbol: "N",
-    isCheck: false,
-    type: "Regular",
-    quantityTypes: [{ value: 'steak-Pulses', viewValue: 'SteakPulses1' }, { value: 'steak-Pulses', viewValue: 'SteakPulses2' },]
-  },
-  {
-    position: 8,
-    indexCache: 7,
-    name: "Garlic Paste",
-    weight: 15.9994,
-    symbol: "O",
-    isCheck: false,
-    type: "Not Regular",
-    quantityTypes: [{ value: 'steak-Garlic1', viewValue: 'SteakGarlic1' }, { value: 'steak-Garlic2', viewValue: 'SteakGarlic2' }, { value: 'steak-Garlic3', viewValue: 'SteakGarlic3' }]
-  }
-];
+import { mockData } from './mockJsonPacks';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-customise-items-table',
@@ -104,92 +9,153 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class CustomiseItemsTableComponent {
 
-  public useForm: any = new FormGroup({});
+  form: FormGroup = new FormGroup({});
 
-  indexToPush: any = [];
+  inputData: any = mockData;
 
-  types = ["1/2 Kg", "1 Kg", "2 Kg"];
-  updatedElements: PeriodicElement[] = [];
-
-  public displayedColumns: string[] = [
-    "isCheck",
-    "position",
-    "name",
-    "weight",
-    "symbol",
-    "type"
-  ];
-
-  // public dataSource = ELEMENT_DATA;
-  dataSource: MatTableDataSource<PeriodicElement> = new MatTableDataSource(
-    ELEMENT_DATA
-  );
-
-  constructor() {
-    this.useForm = new FormGroup({
-      /* FormArray to contain all the row FormGroups */
-      elements: new FormArray([])
-    });
-    this.initForm();
+  constructor(private fb: FormBuilder) {
+    this.initPackSize(this.inputData.packSizes[0], this.inputData.packTemplates[0], this.inputData);
   }
 
-  public initForm() {
-    /* FormGroup for all editable cells in a row */
-    const rowFormGroups = ELEMENT_DATA.map(element => {
-      const rowFormGroup = new FormGroup({
-        indexCache: new FormControl(element.indexCache),
-        symbol: new FormControl(element.symbol),
-        isCheck: new FormControl(element.isCheck),
-        type: new FormControl({ value: element.type, disabled: !element.isCheck })
+  initPackSize(packSize: any, template: any, inputData: any) {
+    this.form = this.fb.group({
+      packName: [inputData.packName],
+      packTemplate: [template],
+      packSize: [packSize],
+      items: this.fb.array([]),
+      packTotal: [0]
+    });
+    this.initItemsList(template.value.items || []);
+  }
+
+  changePackSizeFn(packSize: any) {
+    const itemsFormArray = this.form.controls.items as FormArray;
+    itemsFormArray.controls.forEach((element, index) => {
+      const quantityList = element.get("quantityList")?.value;
+      const quantityIndex = quantityList.findIndex((x: any) => x.key === packSize.key);
+      element.patchValue({
+        quantity: (quantityList[quantityIndex])
       });
-
-      /* Listen for changes to the row */
-      rowFormGroup.valueChanges.pipe(distinctUntilChanged()).subscribe(rowValues => {
-        let index = rowValues.indexCache;
-        let dropdownCtrl = (this.useForm.get("elements") as FormArray).at(index);
-        const disableEnableOptions = { emitEvent: false };
-        const checkBoxChecked = dropdownCtrl.get('isCheck')?.value;
-        if (checkBoxChecked) {
-          dropdownCtrl.get('type')?.enable(disableEnableOptions);
-        }
-        else {
-          dropdownCtrl.get('type')?.disable(disableEnableOptions);
-        }
-      });
-      return rowFormGroup;
-    });
-
-    /* Parent FormGroup */
-    this.useForm = new FormGroup({
-      /* FormArray to contain all the row FormGroups */
-      elements: new FormArray(rowFormGroups)
     });
   }
 
-  public saveChanges() {
-    // console.log(this.useForm);
-    const len = (this.useForm.get("elements") as FormArray).length;
-    // the line below is the actual info we need
-    // *******************************************
-    //console.log("next", this.useForm.get("elements").controls[i].value);
-    // console.log('play here', ( (this.useForm.get('elements') as FormArray) ));
-    for (let i = 0; i < len; i++) {
-      if ((this.useForm.get("elements") as FormArray).at(i).dirty) {
-        this.indexToPush.push(i);
-      }
-    }
-
-    // I should not be pushing this.dataSource but I don't know how to access the updated row.
-    for (let i = 0, j = 0; i < this.dataSource.data.length && j < this.indexToPush.length; i++) {
-      if (this.indexToPush[j] === i) {
-        // console.log(this.dataSource.data[i]);
-        //              this.dataSource.data[i].symbol =
-        // this.updatedElements.push(this.dataSource.data[i]);
-        this.updatedElements.push(this.useForm.get("elements").value);
-        j++;
-      }
-    }
-
-    console.log('Check if my updated data is being saved.', this.updatedElements);
+  initItemsList(list: any) {
+    list.forEach((item: any) => {
+      this.addItem(item);
+    });
+    this.runOverFn();
   }
+
+  setPackTotal() {
+    const itemsFormArray = this.form.controls.items as FormArray;
+    let items = itemsFormArray.value;
+    items = items.filter((ele: any) => {
+      return ele.isChecked
+    });
+    const packTotal = items.reduce((a: any, b: any) => a + +b.price, 0);
+    this.form.patchValue({
+      packTotal: packTotal
+    });
+  }
+
+  addItem(item: any) {
+    const itemsFormArray = (<FormArray>this.form.get("items")) as FormArray;
+    const quantityIndex = item.quantity ? item.quantityList.findIndex((x: any) => x.key === item.quantity.key) : 0;
+    const brandIndex = item.brand ? item.brandsList.findIndex((x: any) => x.key === item.brand.key) : 0;
+    const brand = item.brandsList[brandIndex];
+    const variantsList = brand.variantsList;
+    const variantIndex = item.variant ? variantsList.findIndex((x: any) => x.key === item.variant.key) : 0;
+    const variant = variantsList[variantIndex];
+
+    const pricePerItem = variant.price;
+    const quantity = item.quantity || item.quantityList[quantityIndex];
+    const totalPricePerItem = (pricePerItem * quantity.value || 0);
+
+    itemsFormArray.push(
+      this.fb.group({
+        isChecked: (item.isChecked),
+        name: (item.name),
+        pricePerItem: (pricePerItem),
+        totalPricePerItem: (totalPricePerItem),
+        brand: (brand),
+        variant: (variant),
+        quantity: new FormControl(quantity),
+        brandsList: ([item.brandsList]),
+        quantityList: ([item.quantityList]),
+        variantsList: ([variantsList]),
+      })
+    );
+  }
+
+  changeBrand(e: any, index: any) {
+    const myForm = (<FormArray>this.form.get("items")).at(index);
+    const variantsList: any = myForm.value.brand.variantsList;
+    const variant = variantsList[0]||{};
+
+    myForm.patchValue({
+      variantsList: variantsList,
+      variant: variant,
+    });
+    this.runOverFn();
+  }
+
+  runOverFn() {
+    const itemsFormArray = (<FormArray>this.form.get("items")) as FormArray;
+    const disableEnableOptions = { emitEvent: false };
+    itemsFormArray.controls.forEach((element, index) => {
+      const isChecked = element.get("isChecked")?.value;
+      if (isChecked) {
+        element.get("quantity")?.enable();
+        element.get("variant")?.enable();
+        element.get("brand")?.enable();
+        element.get("pricePerItem")?.enable();
+        element.get("totalPricePerItem")?.enable();
+        const item = element.value;
+        const pricePerItem = item.variant.price;
+        const quantity = item.quantity;
+        const totalPricePerItem = (pricePerItem * quantity.value);
+        element.patchValue({
+          totalPricePerItem: totalPricePerItem,
+          pricePerItem: pricePerItem
+        }, disableEnableOptions);
+      }
+      else {
+        element.get("quantity")?.disable();
+        element.get("variant")?.disable();
+        element.get("brand")?.disable();
+        element.get("pricePerItem")?.disable();
+        element.get("totalPricePerItem")?.disable();
+        element.get("name")?.disable();
+      }
+    });
+    this.setPackTotal();
+  }
+
+  changeQuantity(e: any, index: any) {
+    this.runOverFn();
+  }
+
+  changeVariant(e: any, index: any) {
+    this.runOverFn();
+  }
+
+  changeCheckbox(e: any, index: any) {
+    this.runOverFn();
+  }
+
+  changePackSize(e: any) {
+    this.changePackSizeFn(e);
+  }
+
+  changePackTemplate(e: any) {
+    const packTemplates = this.inputData.packTemplates;
+    const templateIndex = packTemplates.findIndex((x: any) => x.key === e.key);
+    const packSize = this.form.controls.packSize.value;
+    this.initPackSize(packSize, packTemplates[templateIndex], this.inputData);
+  }
+
+  trackFn(index: any) {
+    return index;
+  }
+
 }
