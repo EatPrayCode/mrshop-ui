@@ -1,3 +1,4 @@
+import { CreatePackComponent } from './create-pack/create-pack.component';
 import { DemoMaterialModule } from './modules/shared/material.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -21,7 +22,8 @@ import { CustomiseItemsTableComponent } from './customise-items-table/customise-
     BlankComponent,
     TopNavComponent,
     FooterComponent,
-    CustomiseItemsTableComponent
+    CustomiseItemsTableComponent,
+    CreatePackComponent
   ],
   imports: [
     BrowserModule,

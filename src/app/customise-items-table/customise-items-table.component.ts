@@ -1,5 +1,4 @@
-import { mockData } from './mockJsonPacks';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
 @Component({
@@ -7,99 +6,84 @@ import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
   templateUrl: './customise-items-table.component.html',
   styleUrls: ['./customise-items-table.component.scss']
 })
-export class CustomiseItemsTableComponent {
+export class CustomiseItemsTableComponent implements OnChanges {
+
+  @Input() inputData: any = null;
+
+  @Output() packChange = new EventEmitter();
 
   form: FormGroup = new FormGroup({});
+  packLoaded: any = false;
 
-  inputData: any = mockData;
-
-  constructor(private fb: FormBuilder) {
-    this.initPackSize(this.inputData.packSizes[0], this.inputData.packTemplates[0], this.inputData);
+  ngOnChanges(changeRecord: SimpleChanges) {
+    const record = changeRecord.inputData;
+    const inputData = record.currentValue || '';
+    if (this.inputData) {
+      this.initialisePage(inputData);
+      this.inputData = inputData;
+      this.packLoaded = true;
+    }
   }
 
-  initPackSize(packSize: any, template: any, inputData: any) {
+  initialisePage(inputData: any) {
+    this.initPackSize(inputData, 0);
+    this.runOverArray();
+  }
+
+  constructor(private fb: FormBuilder) { }
+
+  initPackSize(inputData: any, templateIndex: any) {
+    const packSizes: any = (inputData && inputData.packSizes) ? inputData.packSizes : [];
+    const packSize: any = (packSizes) ? packSizes[0] : {};
+    const packTemplates: any = (inputData && inputData.packTemplates) ? inputData.packTemplates : [];
+    const template: any = (packTemplates) ? packTemplates[templateIndex] : {};
+    const packName = inputData.packName || '';
+    const items: any = template ? template.value.items : [];
     this.form = this.fb.group({
-      packName: [inputData.packName],
+      packName: [packName],
       packTemplate: [template],
+      packTemplates: [packTemplates],
       packSize: [packSize],
-      items: this.fb.array([]),
+      packSizes: [packSizes],
+      items: this.initItemsListFormArray(items, this.fb),
       packTotal: [0]
     });
-    this.initItemsList(template.value.items || []);
   }
 
-  changePackSizeFn(packSize: any) {
-    const itemsFormArray = this.form.controls.items as FormArray;
-    itemsFormArray.controls.forEach((element, index) => {
-      const quantityList = element.get("quantityList")?.value;
-      const quantityIndex = quantityList.findIndex((x: any) => x.key === packSize.key);
-      element.patchValue({
-        quantity: (quantityList[quantityIndex])
-      });
-    });
-  }
+  initItemsListFormArray(list: any, fb: any) {
+    const itemsFormArray: FormArray = fb.array([]);
 
-  initItemsList(list: any) {
     list.forEach((item: any) => {
-      this.addItem(item);
+      const quantityIndex = item.quantity ? item.quantityList.findIndex((x: any) => x.key === item.quantity.key) : 0;
+      const brandIndex = item.brand ? item.brandsList.findIndex((x: any) => x.key === item.brand.key) : 0;
+      const brand = item.brandsList[brandIndex];
+      const variantsList = brand.variantsList;
+      const variantIndex = item.variant ? variantsList.findIndex((x: any) => x.key === item.variant.key) : 0;
+      const variant = variantsList[variantIndex];
+
+      const pricePerItem = variant.price;
+      const quantity = item.quantity || item.quantityList[quantityIndex];
+      const totalPricePerItem = (pricePerItem * quantity.value || 0);
+
+      itemsFormArray.push(
+        fb.group({
+          isChecked: (item.isChecked),
+          name: (item.name),
+          pricePerItem: (pricePerItem),
+          totalPricePerItem: (totalPricePerItem),
+          brand: (brand),
+          variant: (variant),
+          quantity: new FormControl(quantity),
+          brandsList: ([item.brandsList]),
+          quantityList: ([item.quantityList]),
+        })
+      );
     });
-    this.runOverFn();
+
+    return itemsFormArray;
   }
 
-  setPackTotal() {
-    const itemsFormArray = this.form.controls.items as FormArray;
-    let items = itemsFormArray.value;
-    items = items.filter((ele: any) => {
-      return ele.isChecked
-    });
-    const packTotal = items.reduce((a: any, b: any) => a + +b.price, 0);
-    this.form.patchValue({
-      packTotal: packTotal
-    });
-  }
-
-  addItem(item: any) {
-    const itemsFormArray = (<FormArray>this.form.get("items")) as FormArray;
-    const quantityIndex = item.quantity ? item.quantityList.findIndex((x: any) => x.key === item.quantity.key) : 0;
-    const brandIndex = item.brand ? item.brandsList.findIndex((x: any) => x.key === item.brand.key) : 0;
-    const brand = item.brandsList[brandIndex];
-    const variantsList = brand.variantsList;
-    const variantIndex = item.variant ? variantsList.findIndex((x: any) => x.key === item.variant.key) : 0;
-    const variant = variantsList[variantIndex];
-
-    const pricePerItem = variant.price;
-    const quantity = item.quantity || item.quantityList[quantityIndex];
-    const totalPricePerItem = (pricePerItem * quantity.value || 0);
-
-    itemsFormArray.push(
-      this.fb.group({
-        isChecked: (item.isChecked),
-        name: (item.name),
-        pricePerItem: (pricePerItem),
-        totalPricePerItem: (totalPricePerItem),
-        brand: (brand),
-        variant: (variant),
-        quantity: new FormControl(quantity),
-        brandsList: ([item.brandsList]),
-        quantityList: ([item.quantityList]),
-        variantsList: ([variantsList]),
-      })
-    );
-  }
-
-  changeBrand(e: any, index: any) {
-    const myForm = (<FormArray>this.form.get("items")).at(index);
-    const variantsList: any = myForm.value.brand.variantsList;
-    const variant = variantsList[0]||{};
-
-    myForm.patchValue({
-      variantsList: variantsList,
-      variant: variant,
-    });
-    this.runOverFn();
-  }
-
-  runOverFn() {
+  runOverArray() {
     const itemsFormArray = (<FormArray>this.form.get("items")) as FormArray;
     const disableEnableOptions = { emitEvent: false };
     itemsFormArray.controls.forEach((element, index) => {
@@ -128,30 +112,56 @@ export class CustomiseItemsTableComponent {
         element.get("name")?.disable();
       }
     });
-    this.setPackTotal();
+
+    let items = itemsFormArray.value;
+    items = items.filter((ele: any) => {
+      return ele.isChecked
+    });
+    const packTotal = items.reduce((a: any, b: any) => a + +b.totalPricePerItem, 0);
+    this.form.patchValue({
+      packTotal: packTotal
+    });
+  }
+
+  changeBrand(e: any, index: any) {
+    const myForm = (<FormArray>this.form.get("items")).at(index);
+    const item = myForm.value;
+    myForm.patchValue({
+      variant: item.brand.variantsList[0]
+    });
+    this.runOverArray();
   }
 
   changeQuantity(e: any, index: any) {
-    this.runOverFn();
+    this.runOverArray();
   }
 
   changeVariant(e: any, index: any) {
-    this.runOverFn();
+    this.runOverArray();
   }
 
   changeCheckbox(e: any, index: any) {
-    this.runOverFn();
+    this.runOverArray();
   }
 
   changePackSize(e: any) {
-    this.changePackSizeFn(e);
+    const packSize = e;
+    const itemsFormArray = this.form.controls.items as FormArray;
+    itemsFormArray.controls.forEach((element, index) => {
+      const quantityList = element.get("quantityList")?.value;
+      const quantityIndex = quantityList.findIndex((x: any) => x.key === packSize.key);
+      element.patchValue({
+        quantity: (quantityList[quantityIndex])
+      });
+    });
+    this.runOverArray();
   }
 
   changePackTemplate(e: any) {
     const packTemplates = this.inputData.packTemplates;
     const templateIndex = packTemplates.findIndex((x: any) => x.key === e.key);
-    const packSize = this.form.controls.packSize.value;
-    this.initPackSize(packSize, packTemplates[templateIndex], this.inputData);
+    this.initPackSize(this.inputData, templateIndex);
+    this.runOverArray();
   }
 
   trackFn(index: any) {

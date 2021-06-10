@@ -1,6 +1,5 @@
-<h1>View Pack</h1>
+<div *ngIf="packLoaded">
 
-<div>
 	<form [formGroup]="form">
 
 		<div>
@@ -8,14 +7,12 @@
 		</div>
 
 		<select (ngModelChange)="changePackTemplate($event)" formControlName="packTemplate">
-			<option *ngFor="let packTemplate of form.controls.packTemplates?.value;" [ngValue]="packTemplate">
+			<option *ngFor="let packTemplate of inputData.packTemplates;" [ngValue]="packTemplate">
 				{{packTemplate.name}} </option>
 		</select>
 
-		<!-- {{form.controls.packTemplate?.value|json}} -->
-
 		<select (ngModelChange)="changePackSize($event)" formControlName="packSize">
-			<option *ngFor="let size of form.controls.packSizes?.value;" [ngValue]="size">
+			<option *ngFor="let size of inputData.packSizes;" [ngValue]="size">
 				{{size.name}} </option>
 		</select>
 
@@ -35,7 +32,7 @@
 				</select>
 
 				<select (ngModelChange)="changeVariant($event,i)" formControlName="variant">
-					<option *ngFor="let variant of (form.controls.items?.value)[i].brand?.variantsList;" [ngValue]="variant">
+					<option *ngFor="let variant of (form.controls.items?.value)[i].variantsList;" [ngValue]="variant">
 						{{variant.value}} </option>
 				</select>
 
@@ -45,22 +42,19 @@
 				</select>
 
 				<div>
-					<input formControlName="pricePerItem">
+					<input formControlName="pricePerItem" (change)="changePricePerItem($event,i)">
 				</div>
 
 				<div>
 					<input formControlName="totalPricePerItem">
 				</div>
 
-			</div>
-		</div>
 
-		<div>
-			<input formControlName="packTotal">
+			</div>
 		</div>
 
 	</form>
 
-</div>
+	<button (click)="savePack()">Save Pack</button>
 
-<pre> {{(form.controls.packTotal?.value)|json}}</pre>
+</div>

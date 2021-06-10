@@ -1,6 +1,6 @@
-import { mockData } from './mockJsonPacks';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { mockData } from 'src/app/mockJsonPacks';
 
 @Component({
   selector: 'app-customise-items-table',
